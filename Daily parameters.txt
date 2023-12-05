@@ -1,0 +1,1077 @@
+EURUSD
+
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -7.802375, forecast: 0
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -7.804293, forecast: -1e-04
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -7.803997, forecast: -1e-04
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -7.805078, forecast: -1e-04
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -7.804784, forecast: -3e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -7.804294, forecast: -1e-04
+   Analyzing (1,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,3,1,1) with snorm distribution done.Good model. AIC = -7.804803, forecast: -1e-04
+   Analyzing (1,4,1,1) with snorm distribution done.Good model. AIC = -7.805945, forecast: -3e-04
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -7.804092, forecast: -1e-04
+   Analyzing (2,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Good model. AIC = -7.805269, forecast: -2e-04
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -7.805171, forecast: -1e-04
+   Analyzing (3,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -7.804805, forecast: -2e-04
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -7.806027, forecast: -2e-04
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -7.871374, forecast: 0
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -7.872865, forecast: -1e-04
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -7.872459, forecast: -1e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -7.874779, forecast: -1e-04
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -7.874623, forecast: -2e-04
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -7.872856, forecast: -1e-04
+   Analyzing (1,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,3,1,1) with sstd distribution done.Good model. AIC = -7.874213, forecast: -2e-04
+   Analyzing (1,4,1,1) with sstd distribution done.Good model. AIC = -7.875722, forecast: -2e-04
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -7.872499, forecast: -1e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Good model. AIC = -7.876645, forecast: -3e-04
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -7.875073, forecast: -1e-04
+   Analyzing (3,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -7.874571, forecast: -1e-04
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -7.876149, forecast: -2e-04
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+GBPUSD
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -7.095148, forecast: -1e-04
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -7.094496, forecast: -1e-04
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -7.094961, forecast: -2e-04
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -7.094983, forecast: 0
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -7.096446, forecast: -1e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -7.094495, forecast: -1e-04
+   Analyzing (1,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,3,1,1) with snorm distribution done.Good model. AIC = -7.095618, forecast: -4e-04
+   Analyzing (1,4,1,1) with snorm distribution done.Good model. AIC = -7.095793, forecast: -1e-04
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -7.094855, forecast: -2e-04
+   Analyzing (2,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Good model. AIC = -7.095093, forecast: -1e-04
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -7.094736, forecast: 0
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = -7.095641, forecast: -4e-04
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -7.096371, forecast: 0
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -7.095819, forecast: -1e-04
+   Analyzing (4,2,1,1) with snorm distribution done.Good model. AIC = -7.095139, forecast: -1e-04
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -7.220914, forecast: -1e-04
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -7.220597, forecast: 0
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -7.219945, forecast: -1e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -7.219317, forecast: 0
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -7.219777, forecast: 0
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -7.220588, forecast: 0
+   Analyzing (1,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,3,1,1) with sstd distribution done.Good model. AIC = -7.218748, forecast: -1e-04
+   Analyzing (1,4,1,1) with sstd distribution done.Good model. AIC = -7.219082, forecast: 0
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -7.219956, forecast: -1e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Good model. AIC = -7.218305, forecast: 0
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -7.219306, forecast: 0
+   Analyzing (3,1,1,1) with sstd distribution done.Good model. AIC = -7.218738, forecast: -1e-04
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -7.219769, forecast: 0
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -7.219086, forecast: 0
+   Analyzing (4,2,1,1) with sstd distribution done.Good model. AIC = -7.218311, forecast: 0
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+EURGBP
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -8.288316, forecast: 1e-04
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -8.287586, forecast: 1e-04
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -8.290594, forecast: 2e-04
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -8.291901, forecast: 2e-04
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -8.292919, forecast: 2e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -8.287578, forecast: 1e-04
+   Analyzing (1,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -8.290197, forecast: 2e-04
+   Analyzing (2,1,1,1) with snorm distribution done.Good model. AIC = -8.291879, forecast: 3e-04
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Good model. AIC = -8.291747, forecast: 3e-04
+   Analyzing (2,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -8.291385, forecast: 2e-04
+   Analyzing (3,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -8.292791, forecast: 2e-04
+   Analyzing (4,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -8.413935, forecast: 0
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -8.413286, forecast: 0
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -8.414478, forecast: 1e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -8.416686, forecast: 1e-04
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -8.41689, forecast: 1e-04
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -8.413275, forecast: 0
+   Analyzing (1,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -8.414437, forecast: 1e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Good model. AIC = -8.415894, forecast: 2e-04
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Good model. AIC = -8.416052, forecast: 1e-04
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -8.416535, forecast: 1e-04
+   Analyzing (3,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -8.416842, forecast: 1e-04
+   Analyzing (4,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+EURJPY
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = 1.941955, forecast: 2e-04
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = 1.941914, forecast: -0.0148
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = 1.942522, forecast: -0.0296
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = 1.941378, forecast: -0.0485
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = 1.941757, forecast: -0.0621
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = 1.941914, forecast: -0.0152
+   Analyzing (1,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,4,1,1) with snorm distribution done.Good model. AIC = 1.941466, forecast: 0.0035
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = 1.942474, forecast: -0.0338
+   Analyzing (2,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Good model. AIC = 1.94109, forecast: -0.0693
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = 1.941223, forecast: -0.0607
+   Analyzing (3,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = 1.941655, forecast: -0.0753
+   Analyzing (4,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = 1.792008, forecast: 8e-04
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = 1.791359, forecast: -0.0135
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = 1.791941, forecast: -0.0231
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = 1.789293, forecast: -0.0444
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = 1.789695, forecast: -0.0456
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = 1.791367, forecast: -0.0135
+   Analyzing (1,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,4,1,1) with sstd distribution done.Good model. AIC = 1.790424, forecast: -0.0147
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = 1.791909, forecast: -0.0258
+   Analyzing (2,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Good model. AIC = 1.790075, forecast: -0.039
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = 1.78916, forecast: -0.0539
+   Analyzing (3,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = 1.78963, forecast: -0.0549
+   Analyzing (4,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+EURCAD
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -7.198864, forecast: 0
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -7.199055, forecast: -4e-04
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -7.199442, forecast: -4e-04
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -7.202171, forecast: -4e-04
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -7.202259, forecast: -1e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -7.19899, forecast: -3e-04
+   Analyzing (1,1,1,1) with snorm distribution done.Good model. AIC = -7.20119, forecast: -6e-04
+   Analyzing (1,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,3,1,1) with snorm distribution done.Good model. AIC = -7.204217, forecast: -2e-04
+   Analyzing (1,4,1,1) with snorm distribution done.Good model. AIC = -7.203871, forecast: -2e-04
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -7.199254, forecast: -4e-04
+   Analyzing (2,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Good model. AIC = -7.203451, forecast: -2e-04
+   Analyzing (2,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -7.202089, forecast: -4e-04
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = -7.203964, forecast: -1e-04
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -7.202181, forecast: -1e-04
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -7.20345, forecast: -2e-04
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -7.264742, forecast: -1e-04
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -7.264574, forecast: -3e-04
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -7.264614, forecast: -4e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -7.265858, forecast: -3e-04
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -7.266343, forecast: -1e-04
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -7.264545, forecast: -3e-04
+   Analyzing (1,1,1,1) with sstd distribution done.Good model. AIC = -7.265222, forecast: -4e-04
+   Analyzing (1,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,3,1,1) with sstd distribution done.Good model. AIC = -7.269459, forecast: -1e-04
+   Analyzing (1,4,1,1) with sstd distribution done.Good model. AIC = -7.268758, forecast: -1e-04
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -7.264554, forecast: -3e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Good model. AIC = -7.265548, forecast: -1e-04
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -7.265889, forecast: -4e-04
+   Analyzing (3,1,1,1) with sstd distribution done.Good model. AIC = -7.269231, forecast: -1e-04
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -7.266465, forecast: -1e-04
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -7.268475, forecast: -1e-04
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+USDJPY
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = 1.528495, forecast: 0.0061
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = 1.528921, forecast: 0.0103
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = 1.5283, forecast: 0.0194
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = 1.529063, forecast: 0.0308
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = 1.527913, forecast: 0.0109
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = 1.528915, forecast: 0.0114
+   Analyzing (1,1,1,1) with snorm distribution done.Good model. AIC = 1.528975, forecast: 0.0014
+   Analyzing (1,2,1,1) with snorm distribution done.Good model. AIC = 1.529098, forecast: 0.0207
+   Analyzing (1,3,1,1) with snorm distribution done.Good model. AIC = 1.529215, forecast: -0.0621
+   Analyzing (1,4,1,1) with snorm distribution done.Good model. AIC = 1.528489, forecast: -0.0376
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = 1.528309, forecast: 0.0195
+   Analyzing (2,1,1,1) with snorm distribution done.Good model. AIC = 1.529108, forecast: 0.0203
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = 1.529074, forecast: 0.0293
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = 1.5292, forecast: -0.064
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = 1.527839, forecast: 0.0088
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = 1.528263, forecast: -0.0503
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = 1.417276, forecast: 0.0056
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = 1.417228, forecast: 0.0198
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = 1.416445, forecast: 0.0205
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = 1.41719, forecast: 0.032
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = 1.415845, forecast: 0.0166
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = 1.417211, forecast: 0.0206
+   Analyzing (1,1,1,1) with sstd distribution done.Good model. AIC = 1.417078, forecast: -0.0147
+   Analyzing (1,2,1,1) with sstd distribution done.Good model. AIC = 1.417294, forecast: 0.0069
+   Analyzing (1,3,1,1) with sstd distribution done.Good model. AIC = 1.41735, forecast: -0.0515
+   Analyzing (1,4,1,1) with sstd distribution done.Good model. AIC = 1.4162, forecast: -0.032
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = 1.416446, forecast: 0.0208
+   Analyzing (2,1,1,1) with sstd distribution done.Good model. AIC = 1.417305, forecast: 0.0064
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = 1.417195, forecast: 0.0307
+   Analyzing (3,1,1,1) with sstd distribution done.Good model. AIC = 1.417374, forecast: -0.0518
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = 1.415946, forecast: 0.0156
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = 1.416155, forecast: -0.0413
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+AUDCAD
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -8.193815, forecast: -1e-04
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -8.19366, forecast: 0
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -8.194074, forecast: 0
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -8.193735, forecast: -1e-04
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -8.196252, forecast: -3e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -8.193634, forecast: 0
+   Analyzing (1,1,1,1) with snorm distribution done.Good model. AIC = -8.195111, forecast: -1e-04
+   Analyzing (1,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,4,1,1) with snorm distribution done.Good model. AIC = -8.195818, forecast: -2e-04
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -8.193903, forecast: 0
+   Analyzing (2,1,1,1) with snorm distribution done.Good model. AIC = -8.195524, forecast: -2e-04
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Good model. AIC = -8.199035, forecast: -1e-04
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -8.193517, forecast: -1e-04
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = -8.194815, forecast: -3e-04
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -8.196162, forecast: -2e-04
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -8.195812, forecast: -2e-04
+   Analyzing (4,2,1,1) with snorm distribution done.Good model. AIC = -8.198501, forecast: 0
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -8.240933, forecast: -1e-04
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -8.241284, forecast: 0
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -8.241313, forecast: 0
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -8.241718, forecast: -1e-04
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -8.243916, forecast: -2e-04
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -8.241261, forecast: 0
+   Analyzing (1,1,1,1) with sstd distribution done.Good model. AIC = -8.243185, forecast: -1e-04
+   Analyzing (1,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,4,1,1) with sstd distribution done.Good model. AIC = -8.243162, forecast: -2e-04
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -8.241189, forecast: 0
+   Analyzing (2,1,1,1) with sstd distribution done.Good model. AIC = -8.242651, forecast: -2e-04
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Good model. AIC = -8.246594, forecast: -1e-04
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -8.24154, forecast: -1e-04
+   Analyzing (3,1,1,1) with sstd distribution done.Good model. AIC = -8.242298, forecast: -2e-04
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -8.243987, forecast: -2e-04
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -8.243279, forecast: -2e-04
+   Analyzing (4,2,1,1) with sstd distribution done.Good model. AIC = -8.246199, forecast: -1e-04
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+AUDJPY
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = 1.573275, forecast: -0.0059
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = 1.573297, forecast: 0.0071
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = 1.573224, forecast: 0.0115
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = 1.573361, forecast: 0.0255
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = 1.572788, forecast: 0.0253
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = 1.573272, forecast: 0.0086
+   Analyzing (1,1,1,1) with snorm distribution done.Good model. AIC = 1.572802, forecast: 0.0368
+   Analyzing (1,2,1,1) with snorm distribution done.Good model. AIC = 1.573481, forecast: 0.0339
+   Analyzing (1,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,4,1,1) with snorm distribution done.Good model. AIC = 1.573544, forecast: 0.0278
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = 1.573183, forecast: 0.0134
+   Analyzing (2,1,1,1) with snorm distribution done.Good model. AIC = 1.573484, forecast: 0.0337
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = 1.573218, forecast: 0.0304
+   Analyzing (3,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = 1.572729, forecast: 0.0258
+   Analyzing (4,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = 1.481744, forecast: -4e-04
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = 1.481399, forecast: 0.0037
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = 1.480742, forecast: -0.0011
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = 1.480961, forecast: 0.0124
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = 1.479656, forecast: -0.0021
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = 1.481392, forecast: 0.0047
+   Analyzing (1,1,1,1) with sstd distribution done.Good model. AIC = 1.481091, forecast: 0.0022
+   Analyzing (1,2,1,1) with sstd distribution done.Good model. AIC = 1.481116, forecast: -9e-04
+   Analyzing (1,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,4,1,1) with sstd distribution done.Good model. AIC = 1.480409, forecast: -0.0035
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = 1.480766, forecast: -0.0011
+   Analyzing (2,1,1,1) with sstd distribution done.Good model. AIC = 1.481122, forecast: -0.0011
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = 1.480913, forecast: 0.0132
+   Analyzing (3,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = 1.479472, forecast: -0.0035
+   Analyzing (4,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+AUDUSD
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -8.137667, forecast: -1e-04
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -8.139692, forecast: 0
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -8.139012, forecast: 0
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -8.140684, forecast: 0
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -8.140009, forecast: -1e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -8.139692, forecast: 0
+   Analyzing (1,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -8.139081, forecast: 0
+   Analyzing (2,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -8.140701, forecast: 0
+   Analyzing (3,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -8.140005, forecast: -1e-04
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -8.140258, forecast: 0
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -8.184835, forecast: -1e-04
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -8.18697, forecast: 0
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -8.186242, forecast: 0
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -8.187987, forecast: 0
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -8.187974, forecast: -1e-04
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -8.186952, forecast: 0
+   Analyzing (1,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -8.186249, forecast: 0
+   Analyzing (2,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -8.188237, forecast: 0
+   Analyzing (3,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -8.188061, forecast: -1e-04
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -8.188472, forecast: 0
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+CADJPY
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = 1.490072, forecast: 0.0025
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = 1.490218, forecast: 0.001
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = 1.490677, forecast: 0.0165
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = 1.491426, forecast: 0.0185
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = 1.492166, forecast: 0.0083
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = 1.490222, forecast: 8e-04
+   Analyzing (1,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,3,1,1) with snorm distribution done.Good model. AIC = 1.49222, forecast: 0.0181
+   Analyzing (1,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = 1.49067, forecast: 0.0166
+   Analyzing (2,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = 1.49141, forecast: 0.0191
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = 1.492204, forecast: 0.0187
+   Analyzing (3,2,1,1) with snorm distribution done.Good model. AIC = 1.49211, forecast: 0.0055
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = 1.492153, forecast: 0.0092
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = 1.492534, forecast: 0.0255
+   Analyzing (4,2,1,1) with snorm distribution done.Good model. AIC = 1.486426, forecast: 0.1208
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = 1.423496, forecast: 0.0025
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = 1.423519, forecast: 0.0018
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = 1.423808, forecast: 0.0183
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = 1.424509, forecast: 0.0198
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = 1.425193, forecast: 0.008
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = 1.423516, forecast: 0.0018
+   Analyzing (1,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,3,1,1) with sstd distribution done.Good model. AIC = 1.425293, forecast: 0.0197
+   Analyzing (1,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = 1.423808, forecast: 0.018
+   Analyzing (2,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = 1.424486, forecast: 0.0202
+   Analyzing (3,1,1,1) with sstd distribution done.Good model. AIC = 1.425272, forecast: 0.0201
+   Analyzing (3,2,1,1) with sstd distribution done.Good model. AIC = 1.424909, forecast: 0.007
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = 1.425194, forecast: 0.01
+   Analyzing (4,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,2,1,1) with sstd distribution done.Good model. AIC = 1.425428, forecast: 0.0196
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+EURNZD
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -6.733225, forecast: 1e-04
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -6.733389, forecast: -2e-04
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -6.735755, forecast: -1e-04
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -6.735466, forecast: -3e-04
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -6.737206, forecast: -7e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -6.733272, forecast: -1e-04
+   Analyzing (1,1,1,1) with snorm distribution done.Good model. AIC = -6.733656, forecast: -1e-04
+   Analyzing (1,2,1,1) with snorm distribution done.Good model. AIC = -6.734967, forecast: -2e-04
+   Analyzing (1,3,1,1) with snorm distribution done.Good model. AIC = -6.73501, forecast: -5e-04
+   Analyzing (1,4,1,1) with snorm distribution done.Good model. AIC = -6.737961, forecast: -4e-04
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -6.736113, forecast: -2e-04
+   Analyzing (2,1,1,1) with snorm distribution done.Good model. AIC = -6.735318, forecast: -2e-04
+   Analyzing (2,2,1,1) with snorm distribution done.Good model. AIC = -6.73596, forecast: -5e-04
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Good model. AIC = -6.737161, forecast: -4e-04
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -6.73578, forecast: -3e-04
+   Analyzing (3,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -6.737305, forecast: -7e-04
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -6.738037, forecast: -4e-04
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -6.802973, forecast: 0
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -6.802482, forecast: -1e-04
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -6.805403, forecast: -1e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -6.806137, forecast: -1e-04
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -6.807061, forecast: -4e-04
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -6.802443, forecast: -1e-04
+   Analyzing (1,1,1,1) with sstd distribution done.Good model. AIC = -6.803221, forecast: -1e-04
+   Analyzing (1,2,1,1) with sstd distribution done.Good model. AIC = -6.805301, forecast: -1e-04
+   Analyzing (1,3,1,1) with sstd distribution done.Good model. AIC = -6.806655, forecast: 2e-04
+   Analyzing (1,4,1,1) with sstd distribution done.Good model. AIC = -6.808702, forecast: -1e-04
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -6.806504, forecast: -2e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Good model. AIC = -6.805775, forecast: -1e-04
+   Analyzing (2,2,1,1) with sstd distribution done.Good model. AIC = -6.805499, forecast: -3e-04
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -6.806392, forecast: -2e-04
+   Analyzing (3,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -6.806874, forecast: -4e-04
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -6.808838, forecast: -2e-04
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+GBPAUD
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -6.412719, forecast: 0
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -6.412059, forecast: 1e-04
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -6.412761, forecast: 2e-04
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -6.413341, forecast: 2e-04
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -6.415583, forecast: 4e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -6.412049, forecast: 1e-04
+   Analyzing (1,1,1,1) with snorm distribution done.Good model. AIC = -6.411532, forecast: 2e-04
+   Analyzing (1,2,1,1) with snorm distribution done.Good model. AIC = -6.414205, forecast: 2e-04
+   Analyzing (1,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,4,1,1) with snorm distribution done.Good model. AIC = -6.41514, forecast: 4e-04
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -6.412661, forecast: 2e-04
+   Analyzing (2,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -6.413096, forecast: 2e-04
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = -6.413743, forecast: 3e-04
+   Analyzing (3,2,1,1) with snorm distribution done.Good model. AIC = -6.413424, forecast: -2e-04
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -6.416113, forecast: 5e-04
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -6.415965, forecast: 4e-04
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -6.529143, forecast: 0
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -6.528353, forecast: 0
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -6.528257, forecast: 1e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -6.5293, forecast: 1e-04
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -6.532032, forecast: 2e-04
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -6.528352, forecast: 0
+   Analyzing (1,1,1,1) with sstd distribution done.Good model. AIC = -6.529729, forecast: -4e-04
+   Analyzing (1,2,1,1) with sstd distribution done.Good model. AIC = -6.529331, forecast: 1e-04
+   Analyzing (1,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,4,1,1) with sstd distribution done.Good model. AIC = -6.531882, forecast: 2e-04
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -6.528224, forecast: 1e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -6.529244, forecast: 1e-04
+   Analyzing (3,1,1,1) with sstd distribution done.Good model. AIC = -6.529891, forecast: 2e-04
+   Analyzing (3,2,1,1) with sstd distribution done.Good model. AIC = -6.529704, forecast: -6e-04
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -6.532449, forecast: 3e-04
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -6.532611, forecast: 3e-04
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+GBPCAD
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -6.627798, forecast: -3e-04
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -6.627902, forecast: -6e-04
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -6.629527, forecast: -8e-04
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -6.629661, forecast: -8e-04
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -6.629924, forecast: -8e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -6.627799, forecast: -5e-04
+   Analyzing (1,1,1,1) with snorm distribution done.Good model. AIC = -6.628913, forecast: 2e-04
+   Analyzing (1,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -6.629405, forecast: -7e-04
+   Analyzing (2,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Good model. AIC = -6.630594, forecast: -6e-04
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -6.629542, forecast: -7e-04
+   Analyzing (3,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Good model. AIC = -6.627089, forecast: -8e-04
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -6.629942, forecast: -8e-04
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -6.631213, forecast: -6e-04
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -6.770404, forecast: -1e-04
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -6.770199, forecast: -3e-04
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -6.770468, forecast: -4e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -6.770495, forecast: -4e-04
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -6.771609, forecast: -2e-04
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -6.770165, forecast: -3e-04
+   Analyzing (1,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -6.7705, forecast: -4e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Good model. AIC = -6.771871, forecast: -3e-04
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -6.770515, forecast: -4e-04
+   Analyzing (3,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Good model. AIC = -6.771097, forecast: -4e-04
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -6.771619, forecast: -2e-04
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -6.772532, forecast: -2e-04
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+GBPJPY
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = 2.664249, forecast: -0.0152
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = 2.664146, forecast: -0.0021
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = 2.664913, forecast: -0.0091
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = 2.665541, forecast: -0.0099
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = 2.664704, forecast: 0.0064
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = 2.664143, forecast: -0.0022
+   Analyzing (1,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,2,1,1) with snorm distribution done.Good model. AIC = 2.66571, forecast: -0.0095
+   Analyzing (1,3,1,1) with snorm distribution done.Good model. AIC = 2.66561, forecast: -0.0101
+   Analyzing (1,4,1,1) with snorm distribution done.Good model. AIC = 2.665339, forecast: 0.0227
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = 2.664922, forecast: -0.0082
+   Analyzing (2,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = 2.665524, forecast: -0.0099
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = 2.665606, forecast: -0.0097
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Good model. AIC = 2.665711, forecast: -0.0748
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = 2.664679, forecast: 0.0055
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = 2.665287, forecast: 0.0258
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = 2.513533, forecast: 0.0026
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = 2.513096, forecast: 0.008
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = 2.513818, forecast: -8e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = 2.514252, forecast: -3e-04
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = 2.513186, forecast: 0.0077
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = 2.513094, forecast: 0.0081
+   Analyzing (1,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,2,1,1) with sstd distribution done.Good model. AIC = 2.514613, forecast: -0.0012
+   Analyzing (1,3,1,1) with sstd distribution done.Good model. AIC = 2.514418, forecast: -7e-04
+   Analyzing (1,4,1,1) with sstd distribution done.Good model. AIC = 2.513872, forecast: 0.0187
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = 2.513832, forecast: 1e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = 2.514249, forecast: -1e-04
+   Analyzing (3,1,1,1) with sstd distribution done.Good model. AIC = 2.514415, forecast: -4e-04
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Good model. AIC = 2.514237, forecast: -0.013
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = 2.513162, forecast: 0.0073
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = 2.513828, forecast: 0.0201
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+NZDUSD
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -8.255391, forecast: -1e-04
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -8.25469, forecast: -1e-04
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -8.254302, forecast: -1e-04
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -8.254422, forecast: 0
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -8.255356, forecast: 1e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -8.254686, forecast: -1e-04
+   Analyzing (1,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,2,1,1) with snorm distribution done.Good model. AIC = -8.253627, forecast: -1e-04
+   Analyzing (1,3,1,1) with snorm distribution done.Good model. AIC = -8.254195, forecast: 1e-04
+   Analyzing (1,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -8.254348, forecast: -1e-04
+   Analyzing (2,1,1,1) with snorm distribution done.Good model. AIC = -8.253666, forecast: 0
+   Analyzing (2,2,1,1) with snorm distribution done.Good model. AIC = -8.257118, forecast: -1e-04
+   Analyzing (2,3,1,1) with snorm distribution done.Good model. AIC = -8.256396, forecast: 1e-04
+   Analyzing (2,4,1,1) with snorm distribution done.Good model. AIC = -8.255671, forecast: 2e-04
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -8.254476, forecast: 0
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = -8.254225, forecast: 0
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -8.25535, forecast: 1e-04
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -8.254789, forecast: 2e-04
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Bad model.
+   Analyzing (0,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (0,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (0,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -8.286663, forecast: 1e-04
+   Analyzing (1,0,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,0,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -8.287734, forecast: 0
+   Analyzing (3,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+USDCAD
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -7.575621, forecast: 0
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -7.577825, forecast: 0
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -7.57726, forecast: 0
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -7.577918, forecast: 1e-04
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -7.577553, forecast: 1e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -7.577833, forecast: 0
+   Analyzing (1,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,4,1,1) with snorm distribution done.Good model. AIC = -7.576812, forecast: 1e-04
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -7.577224, forecast: 0
+   Analyzing (2,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -7.577858, forecast: 1e-04
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = -7.577185, forecast: 1e-04
+   Analyzing (3,2,1,1) with snorm distribution done.Good model. AIC = -7.577135, forecast: 0
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -7.57742, forecast: 1e-04
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -7.57666, forecast: 1e-04
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -7.634997, forecast: 1e-04
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -7.637037, forecast: 1e-04
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -7.636672, forecast: 1e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -7.637073, forecast: 1e-04
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -7.636914, forecast: 1e-04
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -7.637044, forecast: 1e-04
+   Analyzing (1,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,4,1,1) with sstd distribution done.Good model. AIC = -7.636116, forecast: 1e-04
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -7.636633, forecast: 1e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -7.63707, forecast: 1e-04
+   Analyzing (3,1,1,1) with sstd distribution done.Good model. AIC = -7.636277, forecast: 1e-04
+   Analyzing (3,2,1,1) with sstd distribution done.Good model. AIC = -7.636175, forecast: 0
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -7.636818, forecast: 1e-04
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -7.636018, forecast: 1e-04
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+USDCHF
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -8.170387, forecast: -1e-04
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -8.173211, forecast: -3e-04
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -8.173007, forecast: -3e-04
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -8.17477, forecast: -3e-04
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -8.17565, forecast: -2e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -8.173195, forecast: -3e-04
+   Analyzing (1,1,1,1) with snorm distribution done.Good model. AIC = -8.172947, forecast: -2e-04
+   Analyzing (1,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,3,1,1) with snorm distribution done.Good model. AIC = -8.17502, forecast: -3e-04
+   Analyzing (1,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -8.173042, forecast: -3e-04
+   Analyzing (2,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -8.174809, forecast: -3e-04
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = -8.175127, forecast: -3e-04
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -8.175678, forecast: -2e-04
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -8.176023, forecast: -3e-04
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -8.237254, forecast: 0
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -8.23918, forecast: -2e-04
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -8.239086, forecast: -2e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -8.2406, forecast: -1e-04
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -8.24148, forecast: 0
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -8.239139, forecast: -2e-04
+   Analyzing (1,1,1,1) with sstd distribution done.Good model. AIC = -8.23884, forecast: -1e-04
+   Analyzing (1,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,3,1,1) with sstd distribution done.Good model. AIC = -8.240708, forecast: -1e-04
+   Analyzing (1,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -8.23908, forecast: -2e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -8.240615, forecast: -2e-04
+   Analyzing (3,1,1,1) with sstd distribution done.Good model. AIC = -8.240705, forecast: -1e-04
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -8.241407, forecast: -1e-04
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -8.240694, forecast: -1e-04
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+USDNOK
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -2.918747, forecast: 0.0012
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -2.919361, forecast: 0.0011
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -2.919108, forecast: 0.0014
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -2.919723, forecast: 0.0031
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -2.920442, forecast: 0.0032
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -2.919342, forecast: 0.0011
+   Analyzing (1,1,1,1) with snorm distribution done.Good model. AIC = -2.920154, forecast: 0.0012
+   Analyzing (1,2,1,1) with snorm distribution done.Good model. AIC = -2.918856, forecast: 3e-04
+   Analyzing (1,3,1,1) with snorm distribution done.Good model. AIC = -2.919068, forecast: 7e-04
+   Analyzing (1,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -2.919082, forecast: 0.0013
+   Analyzing (2,1,1,1) with snorm distribution done.Good model. AIC = -2.91886, forecast: 3e-04
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -2.919503, forecast: 0.003
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = -2.91901, forecast: 2e-04
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -2.920439, forecast: 0.0032
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -2.918481, forecast: 0.003
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -2.976898, forecast: 0.001
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -2.97794, forecast: 9e-04
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -2.978104, forecast: 6e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -2.978426, forecast: 0.0021
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -2.979444, forecast: 0.0021
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -2.977917, forecast: 9e-04
+   Analyzing (1,1,1,1) with sstd distribution done.Good model. AIC = -2.97866, forecast: 0.0011
+   Analyzing (1,2,1,1) with sstd distribution done.Good model. AIC = -2.977829, forecast: -4e-04
+   Analyzing (1,3,1,1) with sstd distribution done.Good model. AIC = -2.97818, forecast: -9e-04
+   Analyzing (1,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -2.978132, forecast: 5e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Good model. AIC = -2.977846, forecast: -4e-04
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -2.978328, forecast: 0.0019
+   Analyzing (3,1,1,1) with sstd distribution done.Good model. AIC = -2.978206, forecast: -0.0012
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -2.979487, forecast: 0.002
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -2.978762, forecast: 0.002
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+EURAUD
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -6.929634, forecast: 2e-04
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -6.929323, forecast: -3e-04
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -6.929145, forecast: -5e-04
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -6.929202, forecast: -5e-04
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -6.928406, forecast: -5e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -6.929299, forecast: -3e-04
+   Analyzing (1,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,2,1,1) with snorm distribution done.Good model. AIC = -6.929097, forecast: -4e-04
+   Analyzing (1,3,1,1) with snorm distribution done.Good model. AIC = -6.929411, forecast: -3e-04
+   Analyzing (1,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -6.929082, forecast: -5e-04
+   Analyzing (2,1,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -6.929171, forecast: -5e-04
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = -6.929275, forecast: -3e-04
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -6.928386, forecast: -5e-04
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -6.930697, forecast: -2e-04
+   Analyzing (4,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Good model. AIC = -6.931887, forecast: 0.0012
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -6.976376, forecast: 1e-04
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -6.97626, forecast: -5e-04
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -6.976419, forecast: -7e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -6.977614, forecast: -6e-04
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -6.976846, forecast: -6e-04
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -6.976223, forecast: -4e-04
+   Analyzing (1,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,2,1,1) with sstd distribution done.Good model. AIC = -6.977041, forecast: -5e-04
+   Analyzing (1,3,1,1) with sstd distribution done.Good model. AIC = -6.97684, forecast: -6e-04
+   Analyzing (1,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -6.976284, forecast: -6e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -6.977534, forecast: -6e-04
+   Analyzing (3,1,1,1) with sstd distribution done.Good model. AIC = -6.97679, forecast: -6e-04
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -6.976758, forecast: -6e-04
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -6.97889, forecast: -3e-04
+   Analyzing (4,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,3,1,1) with sstd distribution done.Good model. AIC = -6.97792, forecast: -3e-04
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+EURCHF
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -8.707417, forecast: 0
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -8.711714, forecast: 0
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -8.713311, forecast: 2e-04
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -8.714774, forecast: 2e-04
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -8.714178, forecast: 3e-04
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -8.711573, forecast: 0
+   Analyzing (1,1,1,1) with snorm distribution done.Good model. AIC = -8.711437, forecast: 1e-04
+   Analyzing (1,2,1,1) with snorm distribution done.Good model. AIC = -8.713811, forecast: 3e-04
+   Analyzing (1,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (1,4,1,1) with snorm distribution done.Good model. AIC = -8.713382, forecast: 3e-04
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -8.713055, forecast: 2e-04
+   Analyzing (2,1,1,1) with snorm distribution done.Good model. AIC = -8.713954, forecast: 3e-04
+   Analyzing (2,2,1,1) with snorm distribution done.Good model. AIC = -8.715386, forecast: 1e-04
+   Analyzing (2,3,1,1) with snorm distribution done.Good model. AIC = -8.716934, forecast: 0
+   Analyzing (2,4,1,1) with snorm distribution done.Good model. AIC = -8.717062, forecast: 3e-04
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -8.714916, forecast: 1e-04
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = -8.714367, forecast: 2e-04
+   Analyzing (3,2,1,1) with snorm distribution done.Good model. AIC = -8.716558, forecast: 0
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Good model. AIC = -8.720143, forecast: 1e-04
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -8.714736, forecast: 3e-04
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -8.713937, forecast: 3e-04
+   Analyzing (4,2,1,1) with snorm distribution done.Good model. AIC = -8.717166, forecast: 3e-04
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -8.795806, forecast: -1e-04
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -8.802344, forecast: 0
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -8.804793, forecast: 2e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -8.808768, forecast: 2e-04
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -8.808248, forecast: 3e-04
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -8.802131, forecast: 0
+   Analyzing (1,1,1,1) with sstd distribution done.Good model. AIC = -8.8029, forecast: 2e-04
+   Analyzing (1,2,1,1) with sstd distribution done.Good model. AIC = -8.806027, forecast: 3e-04
+   Analyzing (1,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (1,4,1,1) with sstd distribution done.Good model. AIC = -8.807486, forecast: 3e-04
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -8.804014, forecast: 2e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Good model. AIC = -8.806155, forecast: 3e-04
+   Analyzing (2,2,1,1) with sstd distribution done.Good model. AIC = -8.807458, forecast: 1e-04
+   Analyzing (2,3,1,1) with sstd distribution done.Good model. AIC = -8.811401, forecast: 2e-04
+   Analyzing (2,4,1,1) with sstd distribution done.Good model. AIC = -8.81152, forecast: 3e-04
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -8.808882, forecast: 1e-04
+   Analyzing (3,1,1,1) with sstd distribution done.Good model. AIC = -8.808544, forecast: 1e-04
+   Analyzing (3,2,1,1) with sstd distribution done.Good model. AIC = -8.810863, forecast: 1e-04
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Good model. AIC = -8.811228, forecast: 2e-04
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -8.80908, forecast: 3e-04
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -8.808283, forecast: 3e-04
+   Analyzing (4,2,1,1) with sstd distribution done.Good model. AIC = -8.811643, forecast: 3e-04
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+EURNOK
+   Analyzing (0,0,1,1) with snorm distribution done.Good model. AIC = -3.325727, forecast: 9e-04
+   Analyzing (0,1,1,1) with snorm distribution done.Good model. AIC = -3.325942, forecast: -7e-04
+   Analyzing (0,2,1,1) with snorm distribution done.Good model. AIC = -3.325137, forecast: -5e-04
+   Analyzing (0,3,1,1) with snorm distribution done.Good model. AIC = -3.327303, forecast: 0.0013
+   Analyzing (0,4,1,1) with snorm distribution done.Good model. AIC = -3.326316, forecast: 0.002
+   Analyzing (1,0,1,1) with snorm distribution done.Good model. AIC = -3.325952, forecast: -6e-04
+   Analyzing (1,1,1,1) with snorm distribution done.Good model. AIC = -3.326484, forecast: 6e-04
+   Analyzing (1,2,1,1) with snorm distribution done.Good model. AIC = -3.32604, forecast: 0.0011
+   Analyzing (1,3,1,1) with snorm distribution done.Good model. AIC = -3.329489, forecast: 0
+   Analyzing (1,4,1,1) with snorm distribution done.Good model. AIC = -3.325622, forecast: 0.002
+   Analyzing (2,0,1,1) with snorm distribution done.Good model. AIC = -3.325171, forecast: -4e-04
+   Analyzing (2,1,1,1) with snorm distribution done.Good model. AIC = -3.326033, forecast: 0.001
+   Analyzing (2,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (2,3,1,1) with snorm distribution done.Good model. AIC = -3.33023, forecast: -0.0024
+   Analyzing (2,4,1,1) with snorm distribution done.Good model. AIC = -3.329901, forecast: -0.0023
+   Analyzing (3,0,1,1) with snorm distribution done.Good model. AIC = -3.328272, forecast: 0.0016
+   Analyzing (3,1,1,1) with snorm distribution done.Good model. AIC = -3.329325, forecast: 3e-04
+   Analyzing (3,2,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (3,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,0,1,1) with snorm distribution done.Good model. AIC = -3.327317, forecast: 0.0018
+   Analyzing (4,1,1,1) with snorm distribution done.Good model. AIC = -3.326571, forecast: 0.0018
+   Analyzing (4,2,1,1) with snorm distribution done.Good model. AIC = -3.330112, forecast: -0.0021
+   Analyzing (4,3,1,1) with snorm distribution done.Bad model.
+   Analyzing (4,4,1,1) with snorm distribution done.Bad model.
+   Analyzing (0,0,1,1) with sstd distribution done.Good model. AIC = -3.387953, forecast: 0.001
+   Analyzing (0,1,1,1) with sstd distribution done.Good model. AIC = -3.388115, forecast: -4e-04
+   Analyzing (0,2,1,1) with sstd distribution done.Good model. AIC = -3.387311, forecast: -3e-04
+   Analyzing (0,3,1,1) with sstd distribution done.Good model. AIC = -3.391427, forecast: 0.0011
+   Analyzing (0,4,1,1) with sstd distribution done.Good model. AIC = -3.391764, forecast: 0.0012
+   Analyzing (1,0,1,1) with sstd distribution done.Good model. AIC = -3.388122, forecast: -4e-04
+   Analyzing (1,1,1,1) with sstd distribution done.Good model. AIC = -3.38807, forecast: 7e-04
+   Analyzing (1,2,1,1) with sstd distribution done.Good model. AIC = -3.387515, forecast: 8e-04
+   Analyzing (1,3,1,1) with sstd distribution done.Good model. AIC = -3.391881, forecast: -9e-04
+   Analyzing (1,4,1,1) with sstd distribution done.Good model. AIC = -3.391361, forecast: 2e-04
+   Analyzing (2,0,1,1) with sstd distribution done.Good model. AIC = -3.387334, forecast: -2e-04
+   Analyzing (2,1,1,1) with sstd distribution done.Good model. AIC = -3.387515, forecast: 8e-04
+   Analyzing (2,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (2,3,1,1) with sstd distribution done.Good model. AIC = -3.391624, forecast: -0.002
+   Analyzing (2,4,1,1) with sstd distribution done.Good model. AIC = -3.390961, forecast: -8e-04
+   Analyzing (3,0,1,1) with sstd distribution done.Good model. AIC = -3.391495, forecast: 0.0013
+   Analyzing (3,1,1,1) with sstd distribution done.Good model. AIC = -3.391982, forecast: -5e-04
+   Analyzing (3,2,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (3,4,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,0,1,1) with sstd distribution done.Good model. AIC = -3.39181, forecast: 0.0013
+   Analyzing (4,1,1,1) with sstd distribution done.Good model. AIC = -3.391493, forecast: 3e-04
+   Analyzing (4,2,1,1) with sstd distribution done.Good model. AIC = -3.391032, forecast: -6e-04
+   Analyzing (4,3,1,1) with sstd distribution done.Bad model.
+   Analyzing (4,4,1,1) with sstd distribution done.Bad model.
+R[write to console]: There were 50 or more warnings (use warnings() to see the first 50)
+R[write to console]: 
+
+
+Process finished with exit code 0
