@@ -51,7 +51,7 @@ def metatrader_start(username, psw, svr):
         quit()
     authorized = Mt5.login(username, password=psw, server=svr)
     if authorized:
-        print("Connected established")
+        print("Connection established")
     else:
         print(f"failed to connect at account #{username}, error code: {Mt5.last_error()}")
 
@@ -116,7 +116,7 @@ def best_params():
     sys.stdout.close()
 
 
-def market_order(symbol: str, kind: str, act: str, lot: int = 0.02):
+def market_order(symbol: str, kind: str, act: str, lot: int = 0.1):
     """Send and execute a real trade on MetaTrader5. A response will be visible via console and Telegram channel."""
     if act == "open":
 
@@ -152,14 +152,14 @@ def market_order(symbol: str, kind: str, act: str, lot: int = 0.02):
 
         else:
             types = Mt5.ORDER_TYPE_SELL
-        order = Mt5.positions_get(symbol).ticket
+        order = Mt5.positions_get(symbol=symbol)[0].ticket
         request = {
             "action": Mt5.TRADE_ACTION_DEAL,
             "symbol": symbol,
             "volume": lot,
             "type": types,
             "position": order,
-            "type_filling": Mt5.ORDER_FILLING_RETURN,
+            "type_filling": Mt5.ORDER_FILLING_FOK,
             "type_time": Mt5.ORDER_TIME_DAY
         }
 
@@ -408,24 +408,30 @@ if __name__ == "__main__":
     # LIVE TRADING
     else:
         tkr_list = []
+        metatrader_start(demo[0], demo[1], demo[2])
         for tkr in tickers.index:
             if params.loc[tkr, "distribution"] != "0":
                 tkr_list.append(tkr)
                 # Find and save already opened trade on the same ticker
                 try:
-                    last_sign[tkr] = Mt5.positions_get(tkr).type
+                    last_sign[tkr] = Mt5.positions_get(symbol=tkr)[0].type
                 except AttributeError:
                     last_sign[tkr] = -1
+                except IndexError:
+                    last_sign[tkr] = -1
+        Mt5.shutdown()
         while True:
             # For a multiday trading, every night before the end of the trading day, the process begin
             now = datetime.now(timezone).strftime("%H:%M:%S")
-            if now == "18:31:00":
+            if now == "20:19:00":
                 metatrader_start(demo[0], demo[1], demo[2])
                 time_series_download(candles)
                 for tkr in tkr_list:
                     try:
-                        last_sign[tkr] = Mt5.positions_get(tkr).type
+                        last_sign[tkr] = Mt5.positions_get(symbol=tkr)[0].type
                     except AttributeError:
+                        last_sign[tkr] = -1
+                    except IndexError:
                         last_sign[tkr] = -1
                     # Define the strategy to use
                     strategy = ArmaGarchStrategy(data_dict[tkr],
@@ -434,7 +440,7 @@ if __name__ == "__main__":
                     act_signal = strategy.live_signals()
                     # Open long position
                     if act_signal > 0:
-                        opened = Mt5.orders_get(symbol=tkr)
+                        opened = Mt5.positions_get(symbol=tkr)
 
                         if opened is not None:
                             # Close already opened position
@@ -445,7 +451,7 @@ if __name__ == "__main__":
 
                     # Open short position
                     elif act_signal < 0:
-                        opened = Mt5.orders_get(symbol=tkr)
+                        opened = Mt5.positions_get(symbol=tkr)
 
                         if opened is not None:
                             # Close already opened position

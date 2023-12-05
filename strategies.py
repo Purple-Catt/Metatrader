@@ -106,13 +106,11 @@ class ArmaGarchStrategy:
         if self.mod_data.loc[len(self.mod_data.index) - 1, "close"] > (float(forec) + spread) and \
                 last_sign[self.ticker] != 1:
             sign = -1
-            last_sign[self.ticker] = 1
 
         # Bullish signal
         elif (self.mod_data.loc[len(self.mod_data.index) - 1, "close"] + spread) < float(forec) and \
                 last_sign[self.ticker] != 0:
             sign = 1
-            last_sign[self.ticker] = 0
 
         # Holding signal
         else:
