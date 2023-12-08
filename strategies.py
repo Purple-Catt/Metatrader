@@ -1,10 +1,14 @@
+import numpy as np
 import pandas as pd
 import stat_analysis as sa
+import data_preprocessing as dp
+import RNN
 tickers = pd.read_csv("Forex_ticker.csv", index_col=0)
 last_sign = {}
 
 
 class ArmaGarchStrategy:
+
     def __init__(self, data: pd.DataFrame, ticker: str, parameters: pd.DataFrame):
         self.data = data
         self.ticker = ticker
@@ -110,6 +114,37 @@ class ArmaGarchStrategy:
         # Bullish signal
         elif (self.mod_data.loc[len(self.mod_data.index) - 1, "close"] + spread) < float(forec) and \
                 last_sign[self.ticker] != 0:
+            sign = 1
+
+        # Holding signal
+        else:
+            sign = 0
+
+        return sign
+
+
+class RNNStrategy:
+
+    def __init__(self, data: pd.DataFrame, ticker: str, model):
+        self.data = data
+        self.ticker = ticker
+        self.model = model
+        self.name = "RNN"
+        self.mod_data = dp.preprocessing(self.data)
+
+    def live_signals(self):
+        """For live trading use."""
+        global last_sign
+        x = self.mod_data.iloc[-64:].to_numpy()
+        x = x.reshape((1, 64, 8))
+        pred = RNN.prediction(model=self.model, x=x)
+
+        # Bearish signal
+        if pred < 0 and last_sign[self.ticker] != 1:
+            sign = -1
+
+        # Bullish signal
+        elif pred > 0 and last_sign[self.ticker] != 0:
             sign = 1
 
         # Holding signal

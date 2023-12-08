@@ -3,10 +3,11 @@ from datetime import datetime
 import sys
 import MetaTrader5 as Mt5
 import warnings
+from keras.models import load_model
 import indicators as ind
 import stat_analysis as sa
 import strategies
-from strategies import ArmaGarchStrategy
+from strategies import ArmaGarchStrategy, RNNStrategy
 import pytz
 # import matplotlib.pyplot as plt
 import telegram_bot as tb
@@ -25,9 +26,10 @@ demo = credentials.demo
 data_dict = {}  # Time series
 pos_dict = {}  # Opened positions
 sign_dict = {}  # Signals for backtestings
+models = {}  # Models for NN strategies
 last_sign = strategies.last_sign
 tickers = pd.read_csv("Forex_ticker.csv", index_col=0)
-daily = True
+daily = False
 timezone = pytz.timezone("Etc/UTC")
 # Arima-Garch model parameters
 if daily:
@@ -38,10 +40,9 @@ else:
     params = sa.parameters_hourly
     timeframe = Mt5.TIMEFRAME_H1
 
-candles = 2000  # Number of OHLCV data to download
+candles = 100  # Number of OHLCV data to download
 win = 0  # Number of winning positions
 backtest = False  # Set True for backtesting, False for Live trading
-download = True
 
 
 def metatrader_start(username, psw, svr):
@@ -164,6 +165,7 @@ def market_order(symbol: str, kind: str, act: str, lot: int = 0.1):
         }
 
         result = Mt5.order_send(request)
+        profit = Mt5.history_deals_get(ticket=result.deal)[0].profit
         print(f"Closing order on position {order} for {lot} lots on {symbol} sent.")
 
         if result.retcode != Mt5.TRADE_RETCODE_DONE:
@@ -172,7 +174,7 @@ def market_order(symbol: str, kind: str, act: str, lot: int = 0.1):
 
         else:
             print("Execution completed succesfully. Position closed.\n")
-            tb.send_message(f"Position *{order}* closed succesfully")
+            tb.send_message(f"Position *{order}* closed succesfully.\n*Profit*: {profit}")
 
 
 class Position:
@@ -366,11 +368,10 @@ class Portfolio:
 
 
 if __name__ == "__main__":
-
     # ARIMA-GARCH STRATEGY
     # BACKTESTING
     if backtest:
-        time_series_download(candles)
+        time_series_download(candles, online=False)
         bt_optimization = pd.DataFrame(index=tickers.index)
         for sl in [0.025, 0.05, 0.1]:
             bt_return = pd.DataFrame(index=tickers.index)
@@ -410,20 +411,23 @@ if __name__ == "__main__":
         tkr_list = []
         metatrader_start(demo[0], demo[1], demo[2])
         for tkr in tickers.index:
-            if params.loc[tkr, "distribution"] != "0":
-                tkr_list.append(tkr)
-                # Find and save already opened trade on the same ticker
-                try:
-                    last_sign[tkr] = Mt5.positions_get(symbol=tkr)[0].type
-                except AttributeError:
-                    last_sign[tkr] = -1
-                except IndexError:
-                    last_sign[tkr] = -1
+            # if params.loc[tkr, "distribution"] != "0":
+            tkr_list.append(tkr)  # Used for ArmaGarch strategy
+            models[tkr] = load_model(f"Models\\{tkr}.keras")
+            # Find and save already opened trade on the same ticker
+            try:
+                last_sign[tkr] = Mt5.positions_get(symbol=tkr)[0].type
+            except AttributeError:
+                last_sign[tkr] = -1
+            except IndexError:
+                last_sign[tkr] = -1
         Mt5.shutdown()
+        x = True
         while True:
             # For a multiday trading, every night before the end of the trading day, the process begin
-            now = datetime.now(timezone).strftime("%H:%M:%S")
-            if now == "20:19:00":
+            now = datetime.now(timezone).strftime("%M:%S")
+            if now == "55:00":
+            # if x:
                 metatrader_start(demo[0], demo[1], demo[2])
                 time_series_download(candles)
                 for tkr in tkr_list:
@@ -434,9 +438,14 @@ if __name__ == "__main__":
                     except IndexError:
                         last_sign[tkr] = -1
                     # Define the strategy to use
+                    '''
                     strategy = ArmaGarchStrategy(data_dict[tkr],
                                                  ticker=tkr,
                                                  parameters=params)
+                    '''
+                    strategy = RNNStrategy(data=data_dict[tkr],
+                                           ticker=tkr,
+                                           model=models[tkr])
                     act_signal = strategy.live_signals()
                     # Open long position
                     if act_signal > 0:
@@ -461,3 +470,4 @@ if __name__ == "__main__":
                             market_order(symbol=tkr, kind="short", act="open")
 
                 Mt5.shutdown()
+                x = False

@@ -127,7 +127,7 @@ class WindowGenerator:
 def compile_and_fit(model,
                     window,
                     monitor: str = "val_loss",
-                    patience: int = 20,
+                    patience: int = 6,
                     mode: str = "min",
                     loss=tf.losses.MeanSquaredError(),
                     optimizer=tf.optimizers.Adam(),

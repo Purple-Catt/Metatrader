@@ -10,7 +10,7 @@ timezone = pytz.timezone("Etc/UTC")
 
 
 def preprocessing_for_win(df: pd.DataFrame, violin: bool = False):
-    """Preprocess data for the Window object Ask for a DataFrame and return it divided in train, validation and
+    """Preprocess data for the Window object. Ask for a DataFrame and return it divided in train, validation and
     test DataFrame, plus some other data manipulation. If violin=True, a violinplot will be shown.
     Look at the source for further information."""
     # Remove useless attributes
@@ -50,7 +50,7 @@ def preprocessing_for_win(df: pd.DataFrame, violin: bool = False):
     return train_df, val_df, test_df, col_indices, numm_features
 
 
-def preprocessing(df: pd.DataFrame, train: float = 0.8, val: float = 0.0):
+def preprocessing_bt(df: pd.DataFrame, train: float = 0.8, val: float = 0.0):
     """Preprocess data and return it divided in train, validation and test arrays. If val=0.0, no validation array will
     be returned. Look at the source for further information."""
     # Remove useless attributes
@@ -92,11 +92,29 @@ def preprocessing(df: pd.DataFrame, train: float = 0.8, val: float = 0.0):
                 x_test.to_numpy(), y_test.to_numpy())
 
 
+def preprocessing(df: pd.DataFrame):
+    """Preprocess data for live trading use. Look at the source for further information."""
+    # Remove useless attributes
+    df.drop(columns=["real_volume", "spread", "tick_volume"], axis=1, inplace=True)
+    # Convert Timestamp into sinusoidal attributes
+    date_time = pd.to_datetime(df.pop("time"), format="%Y-%m-%d %H:%M:%S")
+    timestamp_s = date_time.map(pd.Timestamp.timestamp)
+    day = 24 * 60 * 60
+    year = 365.25 * day
+    df = df.pct_change()
+    df['Day sin'] = np.sin(timestamp_s * (2 * np.pi / day))
+    df['Day cos'] = np.cos(timestamp_s * (2 * np.pi / day))
+    df['Year sin'] = np.sin(timestamp_s * (2 * np.pi / year))
+    df['Year cos'] = np.cos(timestamp_s * (2 * np.pi / year))
+
+    return df
+
+
 def from_tick_preprocessing(tickers, data_dict: dict):
     """
     The 'data_cleaning' function download 24h ticks data from MT5 and clean them as showed in
     'Realized Kernels in Practice: Trades and Quotes Barndorff-Nielsen et al. 2008b'.\n
-    It must be used for the RV strategy, that still need to be implemented in this code.
+    It must be used for the RV strategy, that still needs to be implemented in this code.
     """
     sec_data = {}
     ret_data = {}
