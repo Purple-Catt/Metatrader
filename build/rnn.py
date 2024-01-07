@@ -7,7 +7,7 @@ import tensorflow as tf
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import warnings
-from wingen import WindowGenerator, compile_and_fit
+from build.wingen import WindowGenerator, compile_and_fit
 import data_preprocessing as dp
 
 warnings.simplefilter(action="ignore", category=FutureWarning)
@@ -58,7 +58,7 @@ def plot_learning_curve(history, start_epoch=1):
 
 def training(plot: bool = True):
     data_dict = {}
-    tickers = pd.read_csv("Forex_ticker.csv", index_col=0)
+    tickers = pd.read_csv("../Forex_ticker.csv", index_col=0)
 
     for names in tickers.index:
         data_dict[names] = pd.read_csv(f"Time series\\Hourly\\{names}.csv", index_col=0)

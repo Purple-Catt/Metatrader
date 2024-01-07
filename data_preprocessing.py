@@ -5,8 +5,11 @@ import seaborn as sns
 from datetime import datetime
 import pytz
 import MetaTrader5 as Mt5
+import warnings
 
 timezone = pytz.timezone("Etc/UTC")
+warnings.simplefilter("ignore", pd.errors.PerformanceWarning)
+warnings.simplefilter("ignore", pd.errors.SettingWithCopyWarning)
 
 
 def preprocessing_for_win(df: pd.DataFrame, violin: bool = False):
@@ -21,7 +24,7 @@ def preprocessing_for_win(df: pd.DataFrame, violin: bool = False):
     day = 24*60*60
     year = 365.25 * day
     # Scaling DataFrame
-    df = df.pct_change()
+    df = df.diff()
     df['Day sin'] = np.sin(timestamp_s * (2 * np.pi / day))
     df['Day cos'] = np.cos(timestamp_s * (2 * np.pi / day))
     df['Year sin'] = np.sin(timestamp_s * (2 * np.pi / year))
@@ -101,13 +104,53 @@ def preprocessing(df: pd.DataFrame):
     timestamp_s = date_time.map(pd.Timestamp.timestamp)
     day = 24 * 60 * 60
     year = 365.25 * day
-    df = df.pct_change()
+    df = df.diff()
+
     df['Day sin'] = np.sin(timestamp_s * (2 * np.pi / day))
     df['Day cos'] = np.cos(timestamp_s * (2 * np.pi / day))
     df['Year sin'] = np.sin(timestamp_s * (2 * np.pi / year))
     df['Year cos'] = np.cos(timestamp_s * (2 * np.pi / year))
 
     return df
+
+
+def elm_preprocessing(df: pd.DataFrame, days: int = 5, timeframe: str = "M", live: bool = False):
+    """Preprocess data for live trading use. Look at the source for further information.\n
+    Parameters:\n
+    df: The raw dataframe to process\n
+    days: The number of past days to consider\n
+    timeframe: Timeframe of the series used, string between D, H, M, respectively for daily, hourly and 5 minutes data\n
+    live: Boolean value; if True, the last row - aka the actual price - is returned separetly to make predictions."""
+    if timeframe == "D":
+        depth = days - 1
+    elif timeframe == "H":
+        depth = (days * 24) - 1
+    elif timeframe == "M":
+        depth = (days * 12 * 24) - 1
+    else:
+        raise ValueError(f"String between 'D', 'H' or 'M' expected, got {timeframe} instead.")
+
+    # Remove useless attributes
+    df.drop(columns=["real_volume", "spread", "tick_volume"], axis=1, inplace=True)
+    past = [df]
+    for i in range(depth):
+        past.append(df.shift(i + 1).rename(
+            columns={"open": f"{i}open", "high": f"{i}high", "low": f"{i}low", "close": f"{i}close"})
+        )
+
+    res = pd.concat(past, axis=1)
+    res["y"] = res["close"].shift(-1)
+    if live:
+        res, last = res.drop(res.tail(1).index), res.tail(1)
+        last.drop("y", axis=1, inplace=True)
+
+    res.dropna(inplace=True)
+    y = res.pop("y")
+    if live:
+        return res, np.array(y), np.array(last)
+
+    else:
+        return res, np.array(y)
 
 
 def from_tick_preprocessing(tickers, data_dict: dict):
@@ -185,4 +228,4 @@ def from_tick_preprocessing(tickers, data_dict: dict):
         except KeyError:
             print(f"Error in downloading {name}")
 
-        return  data_dict, sec_data, ret_data
+        return data_dict, sec_data, ret_data

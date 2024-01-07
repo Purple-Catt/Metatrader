@@ -4,12 +4,11 @@ from statsmodels.tsa.stattools import adfuller
 import pmdarima as pm
 import arch
 import pandas as pd
-import rpy2.robjects as ro
-from rpy2.robjects.packages import importr
-from rpy2.robjects import pandas2ri
+import os
 
-parameters = pd.read_csv("Parameter_daily.csv", index_col=0)
-parameters_hourly = pd.read_csv("Parameters_hourly.csv", index_col=0)
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+parameters = pd.read_csv(f"{ROOT_DIR}\\Parameter_daily.csv", index_col=0)
+parameters_hourly = pd.read_csv(f"{ROOT_DIR}\\Parameters_hourly.csv", index_col=0)
 
 
 def adf_test(data: pd.DataFrame, alpha=0.05):
@@ -29,8 +28,7 @@ def best_arima_model(data, d):
     return stepwise_model.get_params()["order"]
 
 
-def r_bestmodel_arimagarch(pydata, distrib: list):
-    """Return best ARIMA-GARCH parameters running an R script."""
+"""def r_bestmodel_arimagarch(pydata, distrib: list):
     # Import libraries
     base = importr("base")
     bar = importr("BestArimaGarch")
@@ -41,7 +39,7 @@ def r_bestmodel_arimagarch(pydata, distrib: list):
     # Run R script
     bar.garchAuto(base.diff(rdata), min_order=ro.vectors.IntVector([0, 0, 1, 1]),
                   max_order=ro.vectors.IntVector([2, 2, 1, 1]), trace=True, cond_dists=cond, with_forecast=False)
-
+"""
 
 def forecasting(data, distrib, order):
     """Forecast the return of one-step-ahead period using an ARIMA-GARCH model."""
@@ -58,6 +56,7 @@ def forecasting(data, distrib, order):
 
 
 def rkv(data: pd.DataFrame, ret: pd.DataFrame):
+    # TODO
     """Implementation of Realized Kernels, from Realized Kernels in practice, Barndorff-Nielsen et al. 2008b.
     Read the paper for a deep explanation at the following link:\n
     http://public.econ.duke.edu/~get/browse/courses/201/spr12/DOWNLOADS/MicroStructure/bhls_kernels_practice_08.pdf"""

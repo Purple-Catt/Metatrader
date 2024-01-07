@@ -1,23 +1,17 @@
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
-import tensorflow as tf
-import os
 
-from sklearn.metrics import mean_squared_error
-from sklearn.model_selection import KFold
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import mean_squared_error
-from sklearn.model_selection import train_test_split, KFold, cross_val_score, train_test_split
 from sklearn.model_selection import GridSearchCV
 
 from keras.layers import Dense
-from keras.layers import Layer, LSTM, GRU, SimpleRNN
-from keras.regularizers import l1, l2
+from keras.layers import LSTM, GRU, SimpleRNN
+from keras.regularizers import l1
 import keras.layers
-from alphaRNN import *
-from alphatRNN import *
+from build.alphaRNN import *
+from build.alphatRNN import *
 
 save = False
 load = False
@@ -25,7 +19,7 @@ cross_val = False  # Warning: Changing this to True will take several hours to r
 use_features = ['close']  # continuous input
 use_feature = 'close'
 target = 'close'  # continuous output
-df = pd.read_csv(f"Time series\\Hourly\\EURUSD.csv", index_col=0)
+df = pd.read_csv(f"../Time series/Hourly/EURUSD.csv", index_col=0)
 
 
 def get_lagged_features(value, n_steps, n_steps_ahead):

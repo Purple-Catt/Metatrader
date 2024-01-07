@@ -1,8 +1,12 @@
 import numpy as np
 import pandas as pd
-import stat_analysis as sa
 import data_preprocessing as dp
-import RNN
+from build import rnn, elm, stat_analysis as sa
+import matplotlib.pyplot as plt
+import os
+from sklearn.preprocessing import MinMaxScaler
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 tickers = pd.read_csv("Forex_ticker.csv", index_col=0)
 last_sign = {}
 
@@ -25,7 +29,7 @@ class ArmaGarchStrategy:
         elif dist == "sstd":
             self.distrib = "skewt"
         else:
-            raise ValueError(f"Distribution expected value 'snorm' or 'sstd', {dist} found instead.")
+            raise ValueError(f"Distribution expected value 'snorm' or 'sstd', {dist} get instead.")
 
     def generate_signals(self):
         """BACKTESTING PURPOSE\n
@@ -132,12 +136,41 @@ class RNNStrategy:
         self.name = "RNN"
         self.mod_data = dp.preprocessing(self.data)
 
+    def generate_signals(self):
+        """BACKTESTING PURPOSE\n
+                Generate simple long/short signals. It returns -1, 0, 1, respectively for short, hold or long signals"""
+        signals = pd.DataFrame(index=self.data.index.to_list()[64:])
+        signals["signal"] = 0.0
+        last_signal = 0
+
+        for i in signals.index.to_list():
+            # Forecast for period i+1
+            x = self.mod_data.loc[i - 64: i-1].to_numpy()
+            x = x.reshape((1, 64, 8))
+            pred = rnn.prediction(model=self.model, x=x)
+
+            # Bearish signal
+            if pred < 0 and last_signal != -1:
+                signals.loc[i, "signal"] = -1
+                last_signal = -1
+
+            # Bullish signal
+            elif pred > 0 and last_signal != 1:
+                signals.loc[i, "signal"] = 1
+                last_signal = -1
+
+            # Holding signal
+            else:
+                signals.loc[i, "signal"] = 0
+
+            return signals
+
     def live_signals(self):
         """For live trading use."""
         global last_sign
         x = self.mod_data.iloc[-64:].to_numpy()
         x = x.reshape((1, 64, 8))
-        pred = RNN.prediction(model=self.model, x=x)
+        pred = rnn.prediction(model=self.model, x=x)
 
         # Bearish signal
         if pred < 0 and last_sign[self.ticker] != 1:
@@ -152,3 +185,118 @@ class RNNStrategy:
             sign = 0
 
         return sign
+
+
+class ELMStrategy:
+
+    def __init__(self, data: pd.DataFrame, ticker: str, beta: pd.DataFrame = None,
+                 days: int = 10, timeframe: str = "M", live: bool = False, save: bool = False):
+        """Simple trading strategy that uses an Extreme learning machine to make one-step-ahead price predictions.\n
+        Parameters:\n
+        data: DataFrame containing OHLCV data\n
+        ticker: Ticker of the currency cross used\n
+        beta: If given, it's the trained weight matrix\n
+        days: Number of days considered in the training process\n
+        timeframe: Timeframe of the price series used, string between D, H, M, respectively for daily, hourly and 5
+        minutes data\n
+        live: Boolean value; if True, the last row - aka the actual price - is returned separetly to make
+        predictions."""
+        self.data = data
+        self.ticker = ticker
+        self.name = "ELM"
+        if live:
+            self.mod_data, self.Y, last = dp.elm_preprocessing(self.data.copy(deep=True), days=days,
+                                                               timeframe=timeframe, live=True)
+        else:
+            self.mod_data, self.Y = dp.elm_preprocessing(self.data.copy(deep=True), days=days, timeframe=timeframe)
+        self.mod_arr = np.array(self.mod_data)
+        if timeframe == "D":
+            mul = 4
+        elif timeframe == "H":
+            mul = 24 * 4
+        elif timeframe == "M":
+            mul = 12 * 24 * 4
+        else:
+            raise ValueError(f"String between 'D', 'H' or 'M' expected, got {timeframe} instead.")
+
+        self.model = elm.ELM(num_input_nodes=days * mul,
+                             num_hidden_units=days * mul * 10,
+                             num_out_units=1,
+                             activation="tanh",
+                             loss="mse",
+                             beta_init=beta,
+                             w_init="xavier"
+                             )
+
+        if not isinstance(beta, pd.DataFrame):
+            self.model.fit(X=self.mod_arr, Y=self.Y, display_time=True)
+
+        if save:
+            pd.DataFrame(self.model._beta).to_csv(f"{ROOT_DIR}\\ElmBetas\\{timeframe}\\{ticker}_Beta.csv")
+
+    def generate_signals(self):
+        """BACKTESTING PURPOSE\n
+                Generate simple long/short signals. It returns -1, 0, 1, respectively for short, hold or long signals"""
+        signals = pd.DataFrame(index=self.mod_data.index)
+        signals["signal"] = 0.0
+        last_signal = 0
+        for idx, row in enumerate(self.mod_arr):
+            time_idx = self.mod_data.index[idx]
+            forec = self.model(row)
+            spread = self.data.loc[time_idx, "spread"] * float(tickers.loc[self.ticker, "pip"])
+
+            # Bearish signal
+            if (forec + spread) < row[3] and last_signal != -1:
+                signals.loc[time_idx, "signal"] = -1
+                last_signal = -1
+
+            # Bullish signal
+            elif forec > (row[3] + spread) and last_signal != 1:
+                signals.loc[time_idx, "signal"] = 1
+                last_signal = 1
+
+            # Holding signal
+            else:
+                signals.loc[time_idx, "signal"] = 0
+        return signals
+
+    def live_signals(self, x):
+        """For live trading use."""
+        global last_sign
+        pred = self.model(x)
+        spread = self.data["spread"].tail(1) * int(tickers.loc[self.ticker, "pip"])
+
+        # Bearish signal
+        if (pred + spread) < self.mod_data.tail(1) and last_sign[self.ticker] != 1:
+            sign = -1
+
+        # Bullish signal
+        elif pred > (self.mod_data.tail(1) + spread) and last_sign[self.ticker] != 0:
+            sign = 1
+
+        # Holding signal
+        else:
+            sign = 0
+
+        return sign
+
+
+if __name__ == "__main__":
+    tickers = pd.read_csv("Forex_ticker.csv", index_col=0)
+    st = {}
+    fit = False
+    for name in tickers.index:
+        data = pd.read_csv(f"Time series\\Mins\\{name}.csv", index_col=0)
+        beta = pd.read_csv(f"ElmBetas\\Mins\\{name}.csv", index_col=0)
+        st[name] = ELMStrategy(data=data, ticker=name, beta=beta)
+        if fit:
+            st[name].model.fit(X=st[name].mod_arr, Y=st[name].Y, display_time=True)
+            loss, acc, pred = st[name].model.evaluate(X=st[name].mod_arr, Y=st[name].Y)
+            print('train loss: %f' % loss)
+            print('train acc: %f' % acc)
+            plt.plot(range(1000), st[name].Y[:1000], "r-", linewidth=1)
+            plt.plot(range(1000), pred[:1000], "b-", linewidth=1)
+            plt.show()
+            plt.clf()
+
+

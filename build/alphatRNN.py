@@ -398,10 +398,10 @@ class AlphatRNN(RNN):
                           'Please update your layer call.')
         if K.backend() == 'theano' and (dropout or recurrent_dropout):
             warnings.warn(
-                'RNN dropout is no longer supported with the Theano backend '
+                'RNN dropout is no longer supported with the Theano build '
                 'due to technical limitations. '
                 'You can either set `dropout` and `recurrent_dropout` to 0, '
-                'or use the TensorFlow backend.')
+                'or use the TensorFlow build.')
             dropout = 0.
             recurrent_dropout = 0.
 
