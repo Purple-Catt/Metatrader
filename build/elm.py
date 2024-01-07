@@ -49,7 +49,7 @@ def _he_normal(size):
     return normal(loc=0.0, scale=np.sqrt(2 / size[0]), size=size)
 
 
-def getActivation(name):
+def get_activation(name):
     return {
         'sigmoid': _sigmoid,
         'fourier': _fourier,
@@ -58,7 +58,7 @@ def getActivation(name):
     }[name]
 
 
-def getLoss(name):
+def get_loss(name):
     return {
         'mse': _mean_squared_error,
         'mae': _mean_abs_error,
@@ -66,7 +66,7 @@ def getLoss(name):
     }[name]
 
 
-def getInit(name: str, size: tuple):
+def get_init(name: str, size: tuple):
     return {
         'std': _standard_normal(size),
         'xavier': _xavier(size),
@@ -76,21 +76,23 @@ def getInit(name: str, size: tuple):
 
 class ELM:
     def __init__(self, num_input_nodes, num_hidden_units, num_out_units, activation='sigmoid',
-                 loss='mse', beta_init=None, w_init=None, bias_init=None):
+                 loss='mse', beta_init=None, w_init=None, bias_init=None, verbose: bool = True):
         self._num_input_nodes = num_input_nodes
         self._num_hidden_units = num_hidden_units
         self._num_out_units = num_out_units
 
-        self._activation = getActivation(activation)
-        self._loss = getLoss(loss)
+        self._activation = get_activation(activation)
+        self._loss = get_loss(loss)
 
         if isinstance(beta_init, np.ndarray):
             self._beta = beta_init
+            if verbose:
+                print("Beta initializer implemented correctly")
         else:
             self._beta = np.random.uniform(-1., 1., size=(self._num_hidden_units, self._num_out_units))
 
         if isinstance(w_init, str):
-            self._w = getInit(w_init, size=(self._num_input_nodes, self._num_hidden_units))
+            self._w = get_init(w_init, size=(self._num_input_nodes, self._num_hidden_units))
         else:
             self._w = np.random.uniform(-1, 1, size=(self._num_input_nodes, self._num_hidden_units))
 
@@ -99,12 +101,13 @@ class ELM:
         else:
             self._bias = np.zeros(shape=(self._num_hidden_units,))
 
-        print('Bias shape:', self._bias.shape)
-        print('W shape:', self._w.shape)
-        print('Beta shape:', self._beta.shape)
+        if verbose:
+            print('Bias shape:', self._bias.shape)
+            print('W shape:', self._w.shape)
+            print('Beta shape:', self._beta.shape)
 
-    def fit(self, X, Y, display_time: bool = False):
-        H = self._activation(X.dot(self._w) + self._bias)
+    def fit(self, x, y, display_time: bool = False):
+        H = self._activation(x.dot(self._w) + self._bias)
 
         # Moore–Penrose pseudo inverse
         if display_time:
@@ -114,19 +117,23 @@ class ELM:
             stop = time.time()
             print(f'Train time: {stop - start}')
 
-        self._beta = H_pinv.dot(Y)
+        self._beta = H_pinv.dot(y)
 
-    def __call__(self, X):
-        H = self._activation(X.dot(self._w) + self._bias)
+    def __call__(self, x):
+        H = self._activation(x.dot(self._w) + self._bias)
         return H.dot(self._beta)
 
-    def evaluate(self, X, Y):
-        pred = self(X)
+    def evaluate(self, x, y):
+        pred = self(x)
 
         # Loss (base on model setting)
-        loss = self._loss(Y, pred)
+        loss = self._loss(y, pred)
 
         # Accuracy
-        acc = np.sum(np.argmax(pred, axis=-1) == np.argmax(Y, axis=-1)) / len(Y)
+        acc = np.sum(np.argmax(pred, axis=-1) == np.argmax(y, axis=-1)) / len(y)
 
         return loss, acc, pred
+
+    @property
+    def beta(self):
+        return self._beta

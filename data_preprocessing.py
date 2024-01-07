@@ -147,7 +147,7 @@ def elm_preprocessing(df: pd.DataFrame, days: int = 5, timeframe: str = "M", liv
     res.dropna(inplace=True)
     y = res.pop("y")
     if live:
-        return res, np.array(y), np.array(last)
+        return res, np.array(y), np.array(last).reshape(-1)
 
     else:
         return res, np.array(y)

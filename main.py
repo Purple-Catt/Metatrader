@@ -1,5 +1,4 @@
 from datetime import datetime
-import sys
 import os
 import MetaTrader5 as Mt5
 import warnings
@@ -11,8 +10,8 @@ import pytz
 import telegram_bot as tb
 import credentials
 import pandas as pd
-from pandas.plotting import register_matplotlib_converters
-register_matplotlib_converters()
+import numpy as np
+
 warnings.simplefilter("ignore", FutureWarning)
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -21,27 +20,18 @@ server = credentials.server
 real = credentials.real
 demo = credentials.demo
 # Variables
-data_dict = {}  # Time series
-pos_dict = {}  # Opened positions
 sign_dict = {}  # Signals for backtestings
 models = {}  # Models for NN strategies
 last_sign = strategies.last_sign
 tickers = pd.read_csv(f"{ROOT_DIR}\\Forex_ticker.csv", index_col=0)
-daily = False
-live = False
 timezone = pytz.timezone("Etc/UTC")
-# Arima-Garch model parameters
-if daily:
-    params = sa.parameters
-    timeframe = Mt5.TIMEFRAME_D1
 
-else:
-    params = sa.parameters_hourly
-    timeframe = Mt5.TIMEFRAME_M5
+# Arima-Garch model parameters
+params = sa.parameters
+# params = sa.parameters_hourly
+timeframe = Mt5.TIMEFRAME_M5
 
 candles = 70000  # Number of OHLCV data to download
-win = 0  # Number of winning positions
-backtest = True  # Set True for backtesting, False for Live trading
 
 
 def metatrader_start(username, psw, svr):
@@ -57,7 +47,7 @@ def metatrader_start(username, psw, svr):
 
 
 def time_series_download(n_candles: int = 0, online: bool = True, tf=timeframe):
-    data_dict = {}
+    data_dict = dict()
 
     if online:
         for name in tickers.index:
@@ -66,6 +56,9 @@ def time_series_download(n_candles: int = 0, online: bool = True, tf=timeframe):
                 rates_frame = pd.DataFrame(rates)
                 rates_frame['time'] = pd.to_datetime(rates_frame['time'], unit='s')
                 data_dict[name] = rates_frame
+                date_time = pd.to_datetime(data_dict[name]["time"], format="%Y-%m-%d %H:%M:%S")
+                data_dict[name]["time"] = date_time.map(pd.Timestamp.timestamp)
+                data_dict[name].set_index("time", inplace=True)
                 print(f"{name} downloaded correctly")
 
             except KeyError:
@@ -83,7 +76,7 @@ def time_series_download(n_candles: int = 0, online: bool = True, tf=timeframe):
                 data_dict[name] = pd.read_csv(f"{ROOT_DIR}\\Time series\\Mins\\{name}.csv", index_col=0)
 
             else:
-                raise ValueError("Timeframe not yet implemented.")
+                raise NotImplementedError("Timeframe not yet implemented.")
 
             date_time = pd.to_datetime(data_dict[name]["time"], format="%Y-%m-%d %H:%M:%S")
             data_dict[name]["time"] = date_time.map(pd.Timestamp.timestamp)
@@ -94,19 +87,39 @@ def time_series_download(n_candles: int = 0, online: bool = True, tf=timeframe):
     return data_dict
 
 
-def time_series_saving(folder: str = "Daily"):
+def time_series_saving(data: dict, folder: str = "Daily"):
     """Save time series into a project folder."""
-    global data_dict
-    for name in data_dict.keys():
-        data_dict[name].to_csv(f"Time series\\{folder}\\{name}.csv")
+    for name in data.keys():
+        data[name].to_csv(f"Time series\\{folder}\\{name}.csv")
         print(f"{name} saved correctly")
 
 
-def signals_loading():
+def beta_loading(tf=timeframe):
+    beta_dict = dict()
+    for name in tickers.index:
+        if tf == Mt5.TIMEFRAME_D1:
+            beta_dict[name] = np.array(pd.read_csv(f"{ROOT_DIR}\\ElmBetas\\D\\{name}_Beta.csv",
+                                                   index_col=0))
+
+        elif tf == Mt5.TIMEFRAME_H1:
+            beta_dict[name] = np.array(pd.read_csv(f"{ROOT_DIR}\\ElmBetas\\H\\{name}_Beta.csv",
+                                                   index_col=0))
+
+        elif tf == Mt5.TIMEFRAME_M5:
+            beta_dict[name] = np.array(pd.read_csv(f"{ROOT_DIR}\\ElmBetas\\M\\{name}_Beta.csv",
+                                                   index_col=0))
+
+        else:
+            raise NotImplementedError("Timeframe not yet implemented.")
+
+    return beta_dict
+
+
+def signals_loading(data: dict):
     """ONLY FOR DEVELOPING PURPOSES\n
     Used if signals are locally saved."""
     for name in tickers.index:
-        data_dict[name] = pd.read_csv(f"Time series\\Daily\\{name}.csv")
+        data[name] = pd.read_csv(f"Time series\\Daily\\{name}.csv")
         if params.loc[name, "distribution"] != "0":
             sign_dict[name] = pd.read_csv(f"Signals\\{name} signals.csv")
             print(f"{name} signals and data loaded correctly")
@@ -174,24 +187,24 @@ def market_order(symbol: str, kind: str, act: str, lot: int = 0.1):
 
 def backtest_elm():
     """ELM strategy backtest"""
-    global pos_dict
     all_data = time_series_download(online=False)
 
     bt_return = pd.DataFrame(index=tickers.index)
-    for tkr in tickers.index:
+    for ticker in tickers.index:
         max_dd = 0.0
         pos_dict = {}
-        strategy = ELMStrategy(data=all_data[tkr],
-                               ticker=tkr,
-                               days=5,
-                               timeframe="H")
+        strat = ELMStrategy(data=all_data[ticker],
+                            ticker=ticker,
+                            days=5,
+                            timeframe="H")
         win = 0
         returns = Portfolio(data=all_data,
-                            ticker=tkr,
-                            exchange=tickers.loc[tkr, "Toeuro"],
-                            signals=strategy.generate_signals(),
+                            ticker=ticker,
+                            exchange=tickers.loc[ticker, "Toeuro"],
+                            signals=strat.generate_signals(),
+                            positions=pos_dict,
                             stoploss=1).backtest_portfolio()
-        bt_return.loc[tkr, strategy.name] = returns.iloc[-1, returns.columns.get_loc("cash")]
+        bt_return.loc[ticker, strat.name] = returns.iloc[-1, returns.columns.get_loc("cash")]
 
         for val in pos_dict.values():
             # Number of winning positions
@@ -201,15 +214,15 @@ def backtest_elm():
             if val.earnings() < max_dd:
                 max_dd = val.earnings()
         try:
-            bt_return.loc[tkr, f"{strategy.name} % Win"] = (win / len(pos_dict.keys())) * 100
+            bt_return.loc[ticker, f"{strat.name} % Win"] = (win / len(pos_dict.keys())) * 100
 
         except ZeroDivisionError:
-            bt_return.loc[tkr, f"{strategy.name} % Win"] = 0
+            bt_return.loc[ticker, f"{strat.name} % Win"] = 0
 
-        bt_return.loc[tkr, f"{strategy.name} Win"] = win
-        bt_return.loc[tkr, f"{strategy.name}  Operations"] = len(pos_dict)
-        bt_return.loc[tkr, "Max DD"] = max_dd
-        print(f"{strategy.name} strategy on {tkr} successfully tested")
+        bt_return.loc[ticker, f"{strat.name} Win"] = win
+        bt_return.loc[ticker, f"{strat.name}  Operations"] = len(pos_dict)
+        bt_return.loc[ticker, "Max DD"] = max_dd
+        print(f"{strat.name} strategy on {ticker} successfully tested")
 
     bt_return.to_csv("ELM.csv")
 
@@ -217,29 +230,30 @@ def backtest_elm():
 def backtest_armagarch(saveret: bool = False):
     """Arima-Garch strategy backtest"""
     metatrader_start(demo[0], demo[1], demo[2])
-    time_series_download(candles, online=True)
+    all_data = time_series_download(candles, online=True)
     Mt5.shutdown()
     bt_optimization = pd.DataFrame(index=tickers.index)
     for sl in [100]:
         bt_return = pd.DataFrame(index=tickers.index)
-        for tkr in tickers.index:
+        for ticker in tickers.index:
             max_dd = 0.0
-            if params.loc[tkr, "distribution"] == "0":
+            if params.loc[ticker, "distribution"] == "0":
                 pass
             else:
                 pos_dict = {}
-                models[tkr] = load_model(f"Models\\{tkr}.keras")
-                strategy = ArmaGarchStrategy(data_dict[tkr], ticker=tkr, parameters=params)
+                models[ticker] = load_model(f"Models\\{ticker}.keras")
+                strat = ArmaGarchStrategy(all_data[ticker], ticker=ticker, parameters=params)
                 win = 0
-                returns = Portfolio(data=data_dict,
-                                    ticker=tkr,
-                                    exchange=tickers.loc[tkr, "Toeuro"],
-                                    signals=strategy.generate_signals(),
+                returns = Portfolio(data=all_data,
+                                    ticker=ticker,
+                                    exchange=tickers.loc[ticker, "Toeuro"],
+                                    signals=strat.generate_signals(),
+                                    positions=pos_dict,
                                     stoploss=sl).backtest_portfolio()
                 if saveret:
-                    returns.to_csv(f"Portfolios\\{strategy.name}\\{tkr}.csv")
+                    returns.to_csv(f"Portfolios\\{strat.name}\\{ticker}.csv")
 
-                bt_return.loc[tkr, strategy.name] = returns.loc[candles - 1, "cash"]
+                bt_return.loc[ticker, strat.name] = returns.loc[candles - 1, "cash"]
                 for val in pos_dict.values():
                     # Number of winning positions
                     if val.iswinner() is True:
@@ -247,38 +261,38 @@ def backtest_armagarch(saveret: bool = False):
                     # Maximum drawdown
                     if val.earnings() < max_dd:
                         max_dd = val.earnings()
-                bt_return.loc[tkr, f"{strategy.name} % Win"] = (win / len(pos_dict.keys())) * 100
-                bt_return.loc[tkr, f"{strategy.name} Win"] = win
-                bt_return.loc[tkr, f"{strategy.name}  Operations"] = len(pos_dict)
-                bt_return.loc[tkr, "Max DD"] = max_dd
-                print(f"{sl} {strategy.name} strategy on {tkr} successfully tested")
-                bt_optimization.loc[tkr, f"Ret {sl}"] = returns.loc[candles - 1, "cash"] - 100000
-                bt_optimization.loc[tkr, f"MaxDD {sl}"] = max_dd
+                bt_return.loc[ticker, f"{strat.name} % Win"] = (win / len(pos_dict.keys())) * 100
+                bt_return.loc[ticker, f"{strat.name} Win"] = win
+                bt_return.loc[ticker, f"{strat.name}  Operations"] = len(pos_dict)
+                bt_return.loc[ticker, "Max DD"] = max_dd
+                print(f"{sl} {strat.name} strategy on {ticker} successfully tested")
+                bt_optimization.loc[ticker, f"Ret {sl}"] = returns.loc[candles - 1, "cash"] - 100000
+                bt_optimization.loc[ticker, f"MaxDD {sl}"] = max_dd
     bt_optimization.to_csv("Optimization.csv")
 
 
 def backtest_rnn(saveret: bool = False):
     """RNN strategy backtest"""
     metatrader_start(demo[0], demo[1], demo[2])
-    time_series_download(candles, online=True)
+    all_data = time_series_download(candles, online=True)
     Mt5.shutdown()
     bt_return = pd.DataFrame(index=tickers.index)
-    for tkr in tickers.index:
+    for ticker in tickers.index:
         max_dd = 0.0
-        pos_dict = dict()
-        models[tkr] = load_model(f"Models\\{tkr}.keras")
-        strategy = RNNStrategy(data=data_dict[tkr], ticker=tkr, model=models[tkr])
+        pos_dict = {}
+        models[ticker] = load_model(f"Models\\{ticker}.keras")
+        strat = RNNStrategy(data=all_data[ticker], ticker=ticker, model=models[ticker])
         win = 0
-        returns = Portfolio(data=data_dict,
-                            ticker=tkr,
-                            exchange=tickers.loc[tkr, "Toeuro"],
-                            signals=strategy.generate_signals(),
-                            stoploss=1).backtest_portfolio()
+        returns = Portfolio(data=all_data,
+                            ticker=ticker,
+                            exchange=tickers.loc[ticker, "Toeuro"],
+                            signals=strat.generate_signals(),
+                            positions=pos_dict).backtest_portfolio()
 
         if saveret:
-            returns.to_csv(f"Portfolios\\{strategy.name}\\{tkr}.csv")
+            returns.to_csv(f"Portfolios\\{strat.name}\\{ticker}.csv")
 
-        bt_return.loc[tkr, strategy.name] = returns.loc[candles - 1, "cash"]
+        bt_return.loc[ticker, strat.name] = returns.loc[candles - 1, "cash"]
         for n in pos_dict.values():
             # Number of winning positions
             if n.iswinner() is True:
@@ -286,11 +300,11 @@ def backtest_rnn(saveret: bool = False):
             # Maximum drawdown
             if n.earnings() < max_dd:
                 max_dd = n.earnings()
-        bt_return.loc[tkr, f"{strategy.name} % Win"] = (win / len(pos_dict.keys())) * 100
-        bt_return.loc[tkr, f"{strategy.name} Win"] = win
-        bt_return.loc[tkr, f"{strategy.name}  Operations"] = len(pos_dict)
-        bt_return.loc[tkr, "Max DD"] = max_dd
-        print(f"{strategy.name} strategy on {tkr} successfully tested")
+        bt_return.loc[ticker, f"{strat.name} % Win"] = (win / len(pos_dict.keys())) * 100
+        bt_return.loc[ticker, f"{strat.name} Win"] = win
+        bt_return.loc[ticker, f"{strat.name}  Operations"] = len(pos_dict)
+        bt_return.loc[ticker, "Max DD"] = max_dd
+        print(f"{strat.name} strategy on {ticker} successfully tested")
 
 
 class Position:
@@ -376,12 +390,13 @@ class Portfolio:
     """This class creates an actual portfolio for one financial instrument and generates the positions, given a
     signal DataFrame. It's used for backtesting."""
     def __init__(self, data: dict, ticker: str, exchange: str,
-                 signals: pd.DataFrame, init_capital=100000.0, stoploss: float = 1):
+                 signals: pd.DataFrame, positions: dict, init_capital=100000.0, stoploss: float = 1):
         self.tkr_data = data[ticker]
         self.all_data = data
         self.ticker = ticker
         self.exchange = exchange
         self.signals = signals
+        self.pos_dict = positions
         self.init_capital = init_capital
         self.sl = stoploss
         self.positions = self.generate_positions()
@@ -418,15 +433,15 @@ class Portfolio:
             # Bullish signal
             spread = self.tkr_data.loc[i, "spread"] * float(tickers.loc[self.ticker, "pip"])
             if self.signals.loc[i, "signal"] > 0:
-                pos_dict[i] = Position(ticker=self.ticker,
-                                       exchange=self.exchange,
-                                       kind="long",
-                                       opens=[self.tkr_data.loc[i, "close"] + spread, cross],
-                                       stoploss=self.sl,
-                                       quantity=qty)
+                self.pos_dict[i] = Position(ticker=self.ticker,
+                                            exchange=self.exchange,
+                                            kind="long",
+                                            opens=[self.tkr_data.loc[i, "close"] + spread, cross],
+                                            stoploss=self.sl,
+                                            quantity=qty)
 
                 # Close opposite positions
-                for pos in pos_dict.values():
+                for pos in self.pos_dict.values():
 
                     if pos.getkind() == "short" and pos.isopen():
                         try:
@@ -439,15 +454,15 @@ class Portfolio:
 
             # Bearish signal
             elif self.signals.loc[i, "signal"] < 0:
-                pos_dict[i] = Position(ticker=self.ticker,
-                                       exchange=self.exchange,
-                                       kind="short",
-                                       opens=[self.tkr_data.loc[i, "close"], cross],
-                                       stoploss=self.sl,
-                                       quantity=qty)
+                self.pos_dict[i] = Position(ticker=self.ticker,
+                                            exchange=self.exchange,
+                                            kind="short",
+                                            opens=[self.tkr_data.loc[i, "close"], cross],
+                                            stoploss=self.sl,
+                                            quantity=qty)
 
                 # Close opposite positions
-                for pos in pos_dict.values():
+                for pos in self.pos_dict.values():
 
                     if pos.getkind() == "long" and pos.isopen():
                         try:
@@ -461,7 +476,7 @@ class Portfolio:
                 pass
 
             # Check stop loss
-            for pos in pos_dict.values():
+            for pos in self.pos_dict.values():
                 if pos.isopen() \
                         and pos.getkind() == "long" \
                         and pos.sl_price() > self.tkr_data.loc[i, "close"]:
@@ -486,16 +501,17 @@ class Portfolio:
 
             prev_idx = i
         # Close opened positions at the end of the backtest
-        for pos in pos_dict.values():
+        for pos in self.pos_dict.values():
 
             if pos.isopen():
                 pos.setclose(self.tkr_data.loc[positions.index[-1], "close"],
                              self.all_data[self.exchange].loc[positions.index[-1], "close"],
                              positions.index[-1])
 
-        for i in pos_dict.keys():
-            positions.loc[i, "buycf"] = - pos_dict[i].buy_cashflow()
-            positions.loc[pos_dict[i].getclose(), "sellcf"] = pos_dict[i].buy_cashflow() + pos_dict[i].earnings()
+        for i in self.pos_dict.keys():
+            positions.loc[i, "buycf"] = - self.pos_dict[i].buy_cashflow()
+            positions.loc[self.pos_dict[i].getclose(), "sellcf"] = (self.pos_dict[i].buy_cashflow() +
+                                                                    self.pos_dict[i].earnings())
 
         positions[self.ticker] = positions["buycf"] + positions["sellcf"]
 
@@ -513,70 +529,64 @@ class Portfolio:
         return portfolio
 
 
+def live_trading():
+    betas = beta_loading()
+    while True:
+        now = int(datetime.now(timezone).strftime("%M%S"))
+        runtime = list(range(415, 6015, 500))  # Run the code 30s before the candle closes
+        if now in runtime:
+            metatrader_start(demo[0], demo[1], demo[2])
+            all_data = time_series_download(candles)
+
+            for ticker in tickers.index:
+                try:
+                    last_sign[ticker] = Mt5.positions_get(symbol=ticker)[0].type
+                except AttributeError:
+                    last_sign[ticker] = -1
+                except IndexError:
+                    last_sign[ticker] = -1
+                # Uncomment the strategy you want to use
+                '''
+                strategy = ArmaGarchStrategy(all_data[tkr],
+                                             ticker=tkr,
+                                             parameters=params)
+
+                strategy = RNNStrategy(data=all_data[tkr],
+                                       ticker=tkr,
+                                       model=models[tkr])
+                '''
+                strategy = ELMStrategy(all_data[ticker],
+                                       ticker=ticker,
+                                       beta=betas[ticker],
+                                       days=1,
+                                       timeframe="M",
+                                       live=True,
+                                       save=False)
+                act_signal = strategy.live_signals(strategy.last)
+                # Open long position
+                if act_signal > 0:
+                    opened = Mt5.positions_get(symbol=ticker)
+
+                    if opened is not None:
+                        # Close already opened position
+                        for _ in opened:
+                            market_order(symbol=ticker, kind="short", act="close")
+
+                    market_order(symbol=ticker, kind="long", act="open")
+
+                # Open short position
+                elif act_signal < 0:
+                    opened = Mt5.positions_get(symbol=ticker)
+
+                    if opened is not None:
+                        # Close already opened position
+                        for _ in opened:
+                            market_order(symbol=ticker, kind="long", act="close")
+
+                        market_order(symbol=ticker, kind="short", act="open")
+
+            Mt5.shutdown()
+
+
 if __name__ == "__main__":
-    backtest_elm()
-    # LIVE TRADING
-    if live:
-        tkr_list = []
-        metatrader_start(demo[0], demo[1], demo[2])
-        for tkr in tickers.index:
-            # if params.loc[tkr, "distribution"] != "0":
-            tkr_list.append(tkr)  # Used for ArmaGarch strategy
-            models[tkr] = load_model(f"Models\\{tkr}.keras")
-            # Find and save already opened trade on the same ticker
-            try:
-                last_sign[tkr] = Mt5.positions_get(symbol=tkr)[0].type
-            except AttributeError:
-                last_sign[tkr] = -1
-            except IndexError:
-                last_sign[tkr] = -1
-        Mt5.shutdown()
-        x = True
-        while True:
-            # For a multiday trading, every night before the end of the trading day, the process begin
-            now = datetime.now(timezone).strftime("%M:%S")
-            if now == "55:00":
-            # if x:
-                metatrader_start(demo[0], demo[1], demo[2])
-                time_series_download(candles)
-                for tkr in tkr_list:
-                    try:
-                        last_sign[tkr] = Mt5.positions_get(symbol=tkr)[0].type
-                    except AttributeError:
-                        last_sign[tkr] = -1
-                    except IndexError:
-                        last_sign[tkr] = -1
-                    # Define the strategy to use
-                    '''
-                    strategy = ArmaGarchStrategy(data_dict[tkr],
-                                                 ticker=tkr,
-                                                 parameters=params)
-                    '''
-                    strategy = RNNStrategy(data=data_dict[tkr],
-                                           ticker=tkr,
-                                           model=models[tkr])
-                    act_signal = strategy.live_signals()
-                    # Open long position
-                    if act_signal > 0:
-                        opened = Mt5.positions_get(symbol=tkr)
-
-                        if opened is not None:
-                            # Close already opened position
-                            for op in opened:
-                                market_order(symbol=tkr, kind="short", act="close")
-
-                        market_order(symbol=tkr, kind="long", act="open")
-
-                    # Open short position
-                    elif act_signal < 0:
-                        opened = Mt5.positions_get(symbol=tkr)
-
-                        if opened is not None:
-                            # Close already opened position
-                            for op in opened:
-                                market_order(symbol=tkr, kind="long", act="close")
-
-                            market_order(symbol=tkr, kind="short", act="open")
-
-                Mt5.shutdown()
-                x = False
+    live_trading()

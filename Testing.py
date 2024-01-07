@@ -4,6 +4,7 @@ import strategies
 from strategies import ELMStrategy
 import os
 import pytz
+from datetime import datetime
 import telegram_bot as tb
 import credentials
 import pandas as pd
@@ -19,11 +20,11 @@ pos_dict = {}
 models = {}  # Models for RNN strategy
 last_sign = strategies.last_sign
 tickers = pd.read_csv("Forex_ticker.csv", index_col=0)
-live = False
+live = True
 timezone = pytz.timezone("Etc/UTC")
-timeframe = Mt5.TIMEFRAME_H1
+timeframe = Mt5.TIMEFRAME_M5
 
-candles = 70000  # Number of OHLCV data to download
+candles = 1000  # Number of OHLCV data to download
 
 
 def metatrader_start(username, psw, svr):
@@ -48,6 +49,9 @@ def time_series_download(n_candles: int = 0, online: bool = True, tf=timeframe):
                 rates_frame = pd.DataFrame(rates)
                 rates_frame['time'] = pd.to_datetime(rates_frame['time'], unit='s')
                 data_dict[name] = rates_frame
+                date_time = pd.to_datetime(data_dict[name]["time"], format="%Y-%m-%d %H:%M:%S")
+                data_dict[name]["time"] = date_time.map(pd.Timestamp.timestamp)
+                data_dict[name].set_index("time", inplace=True)
                 print(f"{name} downloaded correctly")
 
             except KeyError:
@@ -74,6 +78,27 @@ def time_series_download(n_candles: int = 0, online: bool = True, tf=timeframe):
             print(f"{name} loaded correctly")
 
     return data_dict
+
+
+def beta_loading(tf=timeframe):
+    beta_dict = dict()
+    for name in tickers.index:
+        if tf == Mt5.TIMEFRAME_D1:
+            beta_dict[name] = np.array(pd.read_csv(f"{ROOT_DIR}\\ElmBetas\\D\\{name}_Beta.csv",
+                                                   index_col=0))
+
+        elif tf == Mt5.TIMEFRAME_H1:
+            beta_dict[name] = np.array(pd.read_csv(f"{ROOT_DIR}\\ElmBetas\\H\\{name}_Beta.csv",
+                                                   index_col=0))
+
+        elif tf == Mt5.TIMEFRAME_M5:
+            beta_dict[name] = np.array(pd.read_csv(f"{ROOT_DIR}\\ElmBetas\\M\\{name}_Beta.csv",
+                                                   index_col=0))
+
+        else:
+            raise NotImplementedError("Timeframe not yet implemented.")
+
+    return beta_dict
 
 
 def time_series_saving(folder: str = "Daily"):
@@ -409,4 +434,61 @@ class Portfolio:
 
 
 if __name__ == "__main__":
-    backtest_elm()
+    if live:
+        betas = beta_loading()
+        x = True
+        while True:
+            # For a multiday trading, every night before the end of the trading day, the process begin
+            now = int(datetime.now(timezone).strftime("%M%S"))
+            runtime = list(range(415, 6015, 500))  # Run the code 30s before the candle closes
+            if now in runtime:
+                metatrader_start(demo[0], demo[1], demo[2])
+                all_data = time_series_download(candles)
+                for tkr in tickers.index:
+                    try:
+                        last_sign[tkr] = Mt5.positions_get(symbol=tkr)[0].type
+                    except AttributeError:
+                        last_sign[tkr] = -1
+                    except IndexError:
+                        last_sign[tkr] = -1
+                    # Uncomment the strategy you want to use
+                    '''
+                    strategy = ArmaGarchStrategy(all_data[tkr],
+                                                 ticker=tkr,
+                                                 parameters=params)
+
+                    strategy = RNNStrategy(data=all_data[tkr],
+                                           ticker=tkr,
+                                           model=models[tkr])
+                    '''
+                    strategy = ELMStrategy(all_data[tkr],
+                                           ticker=tkr,
+                                           beta=betas[tkr],
+                                           days=1,
+                                           timeframe="M",
+                                           live=True,
+                                           save=False)
+                    act_signal = strategy.live_signals(strategy.last)
+                    # Open long position
+                    if act_signal > 0:
+                        opened = Mt5.positions_get(symbol=tkr)
+
+                        if opened is not None:
+                            # Close already opened position
+                            for op in opened:
+                                market_order(symbol=tkr, kind="short", act="close")
+
+                        market_order(symbol=tkr, kind="long", act="open")
+
+                    # Open short position
+                    elif act_signal < 0:
+                        opened = Mt5.positions_get(symbol=tkr)
+
+                        if opened is not None:
+                            # Close already opened position
+                            for op in opened:
+                                market_order(symbol=tkr, kind="long", act="close")
+
+                            market_order(symbol=tkr, kind="short", act="open")
+
+                Mt5.shutdown()

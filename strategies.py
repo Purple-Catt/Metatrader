@@ -2,9 +2,7 @@ import numpy as np
 import pandas as pd
 import data_preprocessing as dp
 from build import rnn, elm, stat_analysis as sa
-import matplotlib.pyplot as plt
 import os
-from sklearn.preprocessing import MinMaxScaler
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 tickers = pd.read_csv("Forex_ticker.csv", index_col=0)
@@ -189,7 +187,7 @@ class RNNStrategy:
 
 class ELMStrategy:
 
-    def __init__(self, data: pd.DataFrame, ticker: str, beta: pd.DataFrame = None,
+    def __init__(self, data: pd.DataFrame, ticker: str, beta: np.ndarray = None,
                  days: int = 10, timeframe: str = "M", live: bool = False, save: bool = False):
         """Simple trading strategy that uses an Extreme learning machine to make one-step-ahead price predictions.\n
         Parameters:\n
@@ -205,8 +203,8 @@ class ELMStrategy:
         self.ticker = ticker
         self.name = "ELM"
         if live:
-            self.mod_data, self.Y, last = dp.elm_preprocessing(self.data.copy(deep=True), days=days,
-                                                               timeframe=timeframe, live=True)
+            self.mod_data, self.Y, self.last = dp.elm_preprocessing(self.data.copy(deep=True), days=days,
+                                                                    timeframe=timeframe, live=True)
         else:
             self.mod_data, self.Y = dp.elm_preprocessing(self.data.copy(deep=True), days=days, timeframe=timeframe)
         self.mod_arr = np.array(self.mod_data)
@@ -225,14 +223,15 @@ class ELMStrategy:
                              activation="tanh",
                              loss="mse",
                              beta_init=beta,
-                             w_init="xavier"
+                             w_init="xavier",
+                             verbose=False
                              )
 
-        if not isinstance(beta, pd.DataFrame):
-            self.model.fit(X=self.mod_arr, Y=self.Y, display_time=True)
+        if not isinstance(beta, np.ndarray):
+            self.model.fit(x=self.mod_arr, y=self.Y, display_time=True)
 
         if save:
-            pd.DataFrame(self.model._beta).to_csv(f"{ROOT_DIR}\\ElmBetas\\{timeframe}\\{ticker}_Beta.csv")
+            pd.DataFrame(self.model.beta).to_csv(f"{ROOT_DIR}\\ElmBetas\\{timeframe}\\{ticker}_Beta.csv")
 
     def generate_signals(self):
         """BACKTESTING PURPOSE\n
@@ -264,14 +263,14 @@ class ELMStrategy:
         """For live trading use."""
         global last_sign
         pred = self.model(x)
-        spread = self.data["spread"].tail(1) * int(tickers.loc[self.ticker, "pip"])
+        spread = self.data["spread"].iloc[-1] * float(tickers.loc[self.ticker, "pip"])
 
         # Bearish signal
-        if (pred + spread) < self.mod_data.tail(1) and last_sign[self.ticker] != 1:
+        if (pred + spread) < self.mod_data["close"].iloc[-1] and last_sign[self.ticker] != 1:
             sign = -1
 
         # Bullish signal
-        elif pred > (self.mod_data.tail(1) + spread) and last_sign[self.ticker] != 0:
+        elif pred > (self.mod_data["close"].iloc[-1] + spread) and last_sign[self.ticker] != 0:
             sign = 1
 
         # Holding signal
@@ -279,24 +278,3 @@ class ELMStrategy:
             sign = 0
 
         return sign
-
-
-if __name__ == "__main__":
-    tickers = pd.read_csv("Forex_ticker.csv", index_col=0)
-    st = {}
-    fit = False
-    for name in tickers.index:
-        data = pd.read_csv(f"Time series\\Mins\\{name}.csv", index_col=0)
-        beta = pd.read_csv(f"ElmBetas\\Mins\\{name}.csv", index_col=0)
-        st[name] = ELMStrategy(data=data, ticker=name, beta=beta)
-        if fit:
-            st[name].model.fit(X=st[name].mod_arr, Y=st[name].Y, display_time=True)
-            loss, acc, pred = st[name].model.evaluate(X=st[name].mod_arr, Y=st[name].Y)
-            print('train loss: %f' % loss)
-            print('train acc: %f' % acc)
-            plt.plot(range(1000), st[name].Y[:1000], "r-", linewidth=1)
-            plt.plot(range(1000), pred[:1000], "b-", linewidth=1)
-            plt.show()
-            plt.clf()
-
-
