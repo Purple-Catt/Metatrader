@@ -7,8 +7,8 @@ import pandas as pd
 import os
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-parameters = pd.read_csv(f"{ROOT_DIR}\\Parameter_daily.csv", index_col=0)
-parameters_hourly = pd.read_csv(f"{ROOT_DIR}\\Parameters_hourly.csv", index_col=0)
+parameters = pd.read_csv(f"{ROOT_DIR}\\Params\\Parameter_daily.csv", index_col=0)
+parameters_hourly = pd.read_csv(f"{ROOT_DIR}\\Params\\Parameters_hourly.csv", index_col=0)
 
 
 def adf_test(data: pd.DataFrame, alpha=0.05):

@@ -114,7 +114,8 @@ def preprocessing(df: pd.DataFrame):
     return df
 
 
-def elm_preprocessing(df: pd.DataFrame, days: int = 5, timeframe: str = "M", live: bool = False):
+def elm_preprocessing(df: pd.DataFrame, days: int = 5, timeframe: str = "M",
+                      live: bool = False, use_return: bool = False):
     """Preprocess data for live trading use. Look at the source for further information.\n
     Parameters:\n
     df: The raw dataframe to process\n
@@ -131,12 +132,22 @@ def elm_preprocessing(df: pd.DataFrame, days: int = 5, timeframe: str = "M", liv
         raise ValueError(f"String between 'D', 'H' or 'M' expected, got {timeframe} instead.")
 
     # Remove useless attributes
-    df.drop(columns=["real_volume", "spread", "tick_volume"], axis=1, inplace=True)
-    past = [df]
-    for i in range(depth):
-        past.append(df.shift(i + 1).rename(
-            columns={"open": f"{i}open", "high": f"{i}high", "low": f"{i}low", "close": f"{i}close"})
-        )
+    df.drop(columns=["real_volume", "spread", "tick_volume"], inplace=True)
+    if use_return:
+        df.drop(columns=["open", "high", "low"], inplace=True)
+        df = df.diff() * 1000
+        past = [df]
+        for i in range(depth):
+            past.append(df.shift(i + 1).rename(
+                columns={"close": f"{i}close"})
+            )
+
+    else:
+        past = [df]
+        for i in range(depth):
+            past.append(df.shift(i + 1).rename(
+                columns={"open": f"{i}open", "high": f"{i}high", "low": f"{i}low", "close": f"{i}close"})
+            )
 
     res = pd.concat(past, axis=1)
     res["y"] = res["close"].shift(-1)

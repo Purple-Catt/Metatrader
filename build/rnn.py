@@ -1,15 +1,15 @@
-import keras
-from keras.layers import Dense, Dropout, LSTM
-from keras.models import Sequential, load_model
+from keras.layers import Dense, LSTM
+from keras.models import Sequential
 from keras.regularizers import L2
+import os
 import pandas as pd
-import tensorflow as tf
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import warnings
 from build.wingen import WindowGenerator, compile_and_fit
 import data_preprocessing as dp
 
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 warnings.simplefilter(action="ignore", category=FutureWarning)
 warnings.simplefilter(action="ignore", category=pd.errors.SettingWithCopyWarning)
 mpl.rcParams['figure.figsize'] = (8, 6)
@@ -58,10 +58,10 @@ def plot_learning_curve(history, start_epoch=1):
 
 def training(plot: bool = True):
     data_dict = {}
-    tickers = pd.read_csv("../Forex_ticker.csv", index_col=0)
+    tickers = pd.read_csv(f"{ROOT_DIR}\\Forex_ticker.csv", index_col=0)
 
     for names in tickers.index:
-        data_dict[names] = pd.read_csv(f"Time series\\Hourly\\{names}.csv", index_col=0)
+        data_dict[names] = pd.read_csv(f"{ROOT_DIR}\\Time series\\Hourly\\{names}.csv", index_col=0)
 
     for key in ["USDNOK"]:
         # Uncomment the following lines if you'd like to use the WindowGenerator class
@@ -76,7 +76,7 @@ def training(plot: bool = True):
 
         scores = lstm_model.evaluate(w1.test, verbose=0)
         print("%s model: %s: %.2f%%" % (key, lstm_model.metrics_names[1], scores[1] * 100))
-        lstm_model.save(f"Models\\{key}.keras")
+        lstm_model.save(f"{ROOT_DIR}Models\\{key}.keras")
         print(f"Saved {key} model to disk")
 
 
@@ -84,41 +84,3 @@ def prediction(model, x):
     pred = model.predict(x=x)
 
     return float(pred)
-
-
-if __name__ == "__main__":
-    training()
-    '''
-    # RESHAPE THE ARRAYS
-    x_train, y_train, x_test, y_test = dp.preprocessing(df=data_dict[key])
-    train_dataset = tf.data.Dataset.from_tensor_slices((x_train, y_train))
-    train_dataset = train_dataset.batch(batch_size=batch, drop_remainder=False)
-    lstm_model.compile(optimizer=tf.optimizers.Adam(),
-                       loss=tf.losses.MeanSquaredError(),
-                       metrics=tf.metrics.MeanAbsoluteError())
-    history = lstm_model.fit(train_dataset,
-                             epochs=epochs,
-                             shuffle=False)
-    '''
-    # PLOT PERFORMANCE
-    '''
-    val_performance = {}
-    performance = {}
-    val_performance['LSTM1'] = lstm_model1.evaluate(w1.val)
-    performance['LSTM1'] = lstm_model1.evaluate(w1.test, verbose=0)
-
-    x = np.arange(len(performance))
-    width = 0.3
-    metric_name = 'mean_absolute_error'
-    metric_index = lstm_model1.metrics_names.index('mean_absolute_error')
-    val_mae = [v[metric_index] for v in val_performance.values()]
-    test_mae = [v[metric_index] for v in performance.values()]
-
-    plt.ylabel('mean_absolute_error [Closing price, normalized]')
-    plt.bar(x - 0.17, val_mae, width, label='Validation')
-    plt.bar(x + 0.17, test_mae, width, label='Test')
-    plt.xticks(ticks=x, labels=performance.keys(),
-               rotation=45)
-    _ = plt.legend()
-    plt.show()
-    '''

@@ -187,8 +187,8 @@ class RNNStrategy:
 
 class ELMStrategy:
 
-    def __init__(self, data: pd.DataFrame, ticker: str, beta: np.ndarray = None,
-                 days: int = 10, timeframe: str = "M", live: bool = False, save: bool = False):
+    def __init__(self, data: pd.DataFrame, ticker: str, beta: np.ndarray = None, weight: np.ndarray | str = None,
+                 days: int = 10, timeframe: str = "M", live: bool = False, save: bool = False, returns: bool = True):
         """Simple trading strategy that uses an Extreme learning machine to make one-step-ahead price predictions.\n
         Parameters:\n
         data: DataFrame containing OHLCV data\n
@@ -198,20 +198,23 @@ class ELMStrategy:
         timeframe: Timeframe of the price series used, string between D, H, M, respectively for daily, hourly and 5
         minutes data\n
         live: Boolean value; if True, the last row - aka the actual price - is returned separetly to make
-        predictions."""
+        predictions\n
+        save: Boolean value; if True, both beta and weight matrix will be saved to csv file\n
+        returns: Boolean value; if True, returns are used instead of real prices to make predictions."""
         self.data = data
         self.ticker = ticker
         self.name = "ELM"
+        self.returns = returns
         if live:
             self.mod_data, self.Y, self.last = dp.elm_preprocessing(self.data.copy(deep=True), days=days,
                                                                     timeframe=timeframe, live=True)
         else:
-            self.mod_data, self.Y = dp.elm_preprocessing(self.data.copy(deep=True), days=days, timeframe=timeframe)
+            self.mod_data, self.Y = dp.elm_preprocessing(self.data.copy(deep=True), days=days, timeframe=timeframe, use_return=returns)
         self.mod_arr = np.array(self.mod_data)
         if timeframe == "D":
             mul = 4
         elif timeframe == "H":
-            mul = 24 * 4
+            mul = 24
         elif timeframe == "M":
             mul = 12 * 24 * 4
         else:
@@ -223,15 +226,16 @@ class ELMStrategy:
                              activation="tanh",
                              loss="mse",
                              beta_init=beta,
-                             w_init="xavier",
-                             verbose=False
+                             w_init=weight,
+                             verbose=True
                              )
 
         if not isinstance(beta, np.ndarray):
             self.model.fit(x=self.mod_arr, y=self.Y, display_time=True)
 
         if save:
-            pd.DataFrame(self.model.beta).to_csv(f"{ROOT_DIR}\\ElmBetas\\{timeframe}\\{ticker}_Beta.csv")
+            pd.DataFrame(self.model.beta).to_csv(f"{ROOT_DIR}\\Elm_matrices\\Beta\\{timeframe}\\{ticker}_Beta.csv")
+            pd.DataFrame(self.model.w).to_csv(f"{ROOT_DIR}\\Elm_matrices\\Weight\\{timeframe}\\{ticker}_Weight.csv")
 
     def generate_signals(self):
         """BACKTESTING PURPOSE\n
@@ -240,23 +244,33 @@ class ELMStrategy:
         signals["signal"] = 0.0
         last_signal = 0
         for idx, row in enumerate(self.mod_arr):
+            if self.returns:
+                ref = 0.0
+                act = self.Y[idx]
+            else:
+                ref = row[3]
+                act = self.Y[idx]
             time_idx = self.mod_data.index[idx]
             forec = self.model(row)
+            signals.loc[time_idx, "forecast"] = forec
+            signals.loc[time_idx, "true"] = act
             spread = self.data.loc[time_idx, "spread"] * float(tickers.loc[self.ticker, "pip"])
+            # spread = 0.0
 
             # Bearish signal
-            if (forec + spread) < row[3] and last_signal != -1:
+            if (forec + spread) < ref and last_signal != -1:
                 signals.loc[time_idx, "signal"] = -1
                 last_signal = -1
 
             # Bullish signal
-            elif forec > (row[3] + spread) and last_signal != 1:
+            elif forec > (ref + spread) and last_signal != 1:
                 signals.loc[time_idx, "signal"] = 1
                 last_signal = 1
 
             # Holding signal
             else:
                 signals.loc[time_idx, "signal"] = 0
+        signals.to_csv(f"{ROOT_DIR}\\sign\\{self.ticker}signals.csv")
         return signals
 
     def live_signals(self, x):
@@ -264,13 +278,17 @@ class ELMStrategy:
         global last_sign
         pred = self.model(x)
         spread = self.data["spread"].iloc[-1] * float(tickers.loc[self.ticker, "pip"])
+        if self.returns:
+            ref = 0.0
+        else:
+            ref = self.mod_data["close"].iloc[-1]
 
         # Bearish signal
-        if (pred + spread) < self.mod_data["close"].iloc[-1] and last_sign[self.ticker] != 1:
+        if (pred + spread) < ref and last_sign[self.ticker] != 1:
             sign = -1
 
         # Bullish signal
-        elif pred > (self.mod_data["close"].iloc[-1] + spread) and last_sign[self.ticker] != 0:
+        elif pred > (ref + spread) and last_sign[self.ticker] != 0:
             sign = 1
 
         # Holding signal

@@ -4,13 +4,14 @@ import MetaTrader5 as Mt5
 import warnings
 from keras.models import load_model
 from build import stat_analysis as sa
+from loading.functions import time_series_download, time_series_saving, matrix_loading
+from backtesting.portfolio import Portfolio
 import strategies
 from strategies import ArmaGarchStrategy, RNNStrategy, ELMStrategy
 import pytz
 import telegram_bot as tb
 import credentials
 import pandas as pd
-import numpy as np
 
 warnings.simplefilter("ignore", FutureWarning)
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -25,13 +26,13 @@ models = {}  # Models for NN strategies
 last_sign = strategies.last_sign
 tickers = pd.read_csv(f"{ROOT_DIR}\\Forex_ticker.csv", index_col=0)
 timezone = pytz.timezone("Etc/UTC")
+timeframe = Mt5.TIMEFRAME_H1
 
 # Arima-Garch model parameters
 params = sa.parameters
 # params = sa.parameters_hourly
-timeframe = Mt5.TIMEFRAME_M5
 
-candles = 70000  # Number of OHLCV data to download
+candles = 1000  # Number of OHLCV data to download
 
 
 def metatrader_start(username, psw, svr):
@@ -46,86 +47,7 @@ def metatrader_start(username, psw, svr):
         print(f"failed to connect at account #{username}, error code: {Mt5.last_error()}")
 
 
-def time_series_download(n_candles: int = 0, online: bool = True, tf=timeframe):
-    data_dict = dict()
-
-    if online:
-        for name in tickers.index:
-            try:
-                rates = Mt5.copy_rates_from_pos(name, tf, 0, n_candles)
-                rates_frame = pd.DataFrame(rates)
-                rates_frame['time'] = pd.to_datetime(rates_frame['time'], unit='s')
-                data_dict[name] = rates_frame
-                date_time = pd.to_datetime(data_dict[name]["time"], format="%Y-%m-%d %H:%M:%S")
-                data_dict[name]["time"] = date_time.map(pd.Timestamp.timestamp)
-                data_dict[name].set_index("time", inplace=True)
-                print(f"{name} downloaded correctly")
-
-            except KeyError:
-                print(f"Error in downloading {name}")
-
-    else:
-        for name in tickers.index:
-            if timeframe == Mt5.TIMEFRAME_D1:
-                data_dict[name] = pd.read_csv(f"{ROOT_DIR}\\Time series\\Daily\\{name}.csv", index_col=0)
-
-            elif timeframe == Mt5.TIMEFRAME_H1:
-                data_dict[name] = pd.read_csv(f"{ROOT_DIR}\\Time series\\Hourly\\{name}.csv", index_col=0)
-
-            elif timeframe == Mt5.TIMEFRAME_M5:
-                data_dict[name] = pd.read_csv(f"{ROOT_DIR}\\Time series\\Mins\\{name}.csv", index_col=0)
-
-            else:
-                raise NotImplementedError("Timeframe not yet implemented.")
-
-            date_time = pd.to_datetime(data_dict[name]["time"], format="%Y-%m-%d %H:%M:%S")
-            data_dict[name]["time"] = date_time.map(pd.Timestamp.timestamp)
-            data_dict[name].set_index("time", inplace=True)
-
-            print(f"{name} loaded correctly")
-
-    return data_dict
-
-
-def time_series_saving(data: dict, folder: str = "Daily"):
-    """Save time series into a project folder."""
-    for name in data.keys():
-        data[name].to_csv(f"Time series\\{folder}\\{name}.csv")
-        print(f"{name} saved correctly")
-
-
-def beta_loading(tf=timeframe):
-    beta_dict = dict()
-    for name in tickers.index:
-        if tf == Mt5.TIMEFRAME_D1:
-            beta_dict[name] = np.array(pd.read_csv(f"{ROOT_DIR}\\ElmBetas\\D\\{name}_Beta.csv",
-                                                   index_col=0))
-
-        elif tf == Mt5.TIMEFRAME_H1:
-            beta_dict[name] = np.array(pd.read_csv(f"{ROOT_DIR}\\ElmBetas\\H\\{name}_Beta.csv",
-                                                   index_col=0))
-
-        elif tf == Mt5.TIMEFRAME_M5:
-            beta_dict[name] = np.array(pd.read_csv(f"{ROOT_DIR}\\ElmBetas\\M\\{name}_Beta.csv",
-                                                   index_col=0))
-
-        else:
-            raise NotImplementedError("Timeframe not yet implemented.")
-
-    return beta_dict
-
-
-def signals_loading(data: dict):
-    """ONLY FOR DEVELOPING PURPOSES\n
-    Used if signals are locally saved."""
-    for name in tickers.index:
-        data[name] = pd.read_csv(f"Time series\\Daily\\{name}.csv")
-        if params.loc[name, "distribution"] != "0":
-            sign_dict[name] = pd.read_csv(f"Signals\\{name} signals.csv")
-            print(f"{name} signals and data loaded correctly")
-
-
-def market_order(symbol: str, kind: str, act: str, lot: int = 0.1):
+def market_order(symbol: str, kind: str, act: str, lot: int = 0.05):
     """Send and execute a real trade on MetaTrader5. A response will be visible via console and Telegram channel."""
     if act == "open":
 
@@ -182,12 +104,13 @@ def market_order(symbol: str, kind: str, act: str, lot: int = 0.1):
 
         else:
             print("Execution completed succesfully. Position closed.\n")
-            tb.send_message(f"Position *{order}* closed succesfully.\n*Profit*: {profit}")
+            tb.send_message(f"Position on _{symbol}_ closed succesfully.\n*Profit*: {profit}")
 
 
 def backtest_elm():
     """ELM strategy backtest"""
-    all_data = time_series_download(online=False)
+    all_data = time_series_download(tf=timeframe, online=False)
+    # betas, weights = matrix_loading()
 
     bt_return = pd.DataFrame(index=tickers.index)
     for ticker in tickers.index:
@@ -195,8 +118,9 @@ def backtest_elm():
         pos_dict = {}
         strat = ELMStrategy(data=all_data[ticker],
                             ticker=ticker,
-                            days=5,
-                            timeframe="H")
+                            days=20,
+                            timeframe="H",
+                            save=True)
         win = 0
         returns = Portfolio(data=all_data,
                             ticker=ticker,
@@ -230,7 +154,7 @@ def backtest_elm():
 def backtest_armagarch(saveret: bool = False):
     """Arima-Garch strategy backtest"""
     metatrader_start(demo[0], demo[1], demo[2])
-    all_data = time_series_download(candles, online=True)
+    all_data = time_series_download(n_candles=candles, online=True, tf=timeframe)
     Mt5.shutdown()
     bt_optimization = pd.DataFrame(index=tickers.index)
     for sl in [100]:
@@ -274,7 +198,7 @@ def backtest_armagarch(saveret: bool = False):
 def backtest_rnn(saveret: bool = False):
     """RNN strategy backtest"""
     metatrader_start(demo[0], demo[1], demo[2])
-    all_data = time_series_download(candles, online=True)
+    all_data = time_series_download(n_candles=candles, online=True, tf=timeframe)
     Mt5.shutdown()
     bt_return = pd.DataFrame(index=tickers.index)
     for ticker in tickers.index:
@@ -307,236 +231,27 @@ def backtest_rnn(saveret: bool = False):
         print(f"{strat.name} strategy on {ticker} successfully tested")
 
 
-class Position:
-    """When a trade is done, a Position object is created. It contains all the useful
-    functions and properties of the trade itself."""
-    def __init__(self, ticker, exchange: str, kind: str, opens: list,
-                 close=None, close_index=0.0, stoploss: float = 0.015, quantity: int = 50000):
-        # open and close are lists that contain the closing prices of pair and exchange
-        if isinstance(close, list):
-            self.close = close
-        else:
-            self.close = [0.0, 0]
-        self.tkr = ticker
-        self.exchange = exchange  # NOT USED
-        self.kind = kind
-        self.open = opens
-        self.close = close
-        self.closeind = close_index
-        self.sl = stoploss
-        self.qty = quantity
-
-    def earnings(self):
-        profit = 0.0
-        if self.kind == "long":
-            # P&L in quote currency
-            pel = (self.close[0] - self.open[0]) * self.qty
-            # P/L in Euro
-            profit = pel / self.close[1]
-        elif self.kind == "short":
-            # P&L in quote currency
-            pel = (self.open[0] - self.close[0]) * self.qty
-            # P/L in Euro
-            profit = pel / self.close[1]
-        return profit
-
-    def isopen(self):
-        """This function check if the position is still open or not."""
-        if self.closeind == 0.0:
-            return True
-        else:
-            return False
-
-    def iswinner(self):
-        """FOR ANALYTICAL PURPOSES\n
-        It shows if the trade was in profit(loss)."""
-        if self.earnings() > 0:
-            return True
-        else:
-            return False
-
-    def buy_cashflow(self):
-        """Euros spent to execute the operation."""
-        cf = self.qty / self.open[1]
-        return cf
-
-    def sl_price(self):
-        """Return the SL price, given an %SL."""
-        if self.kind == "long":
-            price = self.open[0] * (1 - self.sl)
-        else:
-            price = self.open[0] * (1 + self.sl)
-        return price
-
-    def getkind(self):
-        """It returns the kind (stop/loss) of trade."""
-        return self.kind
-
-    def getclose(self):
-        """It returns the index of the closing price."""
-        return self.closeind
-
-    def getopen(self):
-        """It returns the opening price."""
-        return self.open[0]
-
-    def setclose(self, close: float, closeexc: int, closeind: float):
-        """Used to close the trade."""
-        self.close = [close, closeexc]
-        self.closeind = closeind
-
-
-class Portfolio:
-    """This class creates an actual portfolio for one financial instrument and generates the positions, given a
-    signal DataFrame. It's used for backtesting."""
-    def __init__(self, data: dict, ticker: str, exchange: str,
-                 signals: pd.DataFrame, positions: dict, init_capital=100000.0, stoploss: float = 1):
-        self.tkr_data = data[ticker]
-        self.all_data = data
-        self.ticker = ticker
-        self.exchange = exchange
-        self.signals = signals
-        self.pos_dict = positions
-        self.init_capital = init_capital
-        self.sl = stoploss
-        self.positions = self.generate_positions()
-
-    def generate_positions(self):
-        """Open long (short) positions based on signals and eventually close already opened ones."""
-        positions = pd.DataFrame(index=self.signals.index).fillna(0.0)
-        positions[self.ticker] = 0.0
-        positions["buycf"] = 0.0
-        positions["sellcf"] = 0.0
-        prev_idx = 0.0
-        for i in positions.index:
-
-            if tickers.loc[self.ticker, "Base"] == "EUR":
-                cross = 1.0
-
-            else:
-                try:
-                    cross = self.all_data["EUR" + tickers.loc[self.ticker, "Base"]].loc[i, "close"]
-
-                except KeyError:
-                    cross = self.all_data["EUR" + tickers.loc[self.ticker, "Base"]].loc[prev_idx, "close"]
-
-            # Determine the quantity
-            if abs(self.signals.loc[i, "signal"]) == 1:
-                qty = 25000
-
-            elif abs(self.signals.loc[i, "signal"]) == 2:
-                qty = 50000
-
-            else:
-                qty = 0
-
-            # Bullish signal
-            spread = self.tkr_data.loc[i, "spread"] * float(tickers.loc[self.ticker, "pip"])
-            if self.signals.loc[i, "signal"] > 0:
-                self.pos_dict[i] = Position(ticker=self.ticker,
-                                            exchange=self.exchange,
-                                            kind="long",
-                                            opens=[self.tkr_data.loc[i, "close"] + spread, cross],
-                                            stoploss=self.sl,
-                                            quantity=qty)
-
-                # Close opposite positions
-                for pos in self.pos_dict.values():
-
-                    if pos.getkind() == "short" and pos.isopen():
-                        try:
-                            exchange_close = self.all_data[self.exchange].loc[i, "close"]
-                        except KeyError:
-                            exchange_close = self.all_data[self.exchange].loc[prev_idx, "close"]
-
-                        pos.setclose(self.tkr_data.loc[i, "close"] + spread,
-                                     exchange_close, i)
-
-            # Bearish signal
-            elif self.signals.loc[i, "signal"] < 0:
-                self.pos_dict[i] = Position(ticker=self.ticker,
-                                            exchange=self.exchange,
-                                            kind="short",
-                                            opens=[self.tkr_data.loc[i, "close"], cross],
-                                            stoploss=self.sl,
-                                            quantity=qty)
-
-                # Close opposite positions
-                for pos in self.pos_dict.values():
-
-                    if pos.getkind() == "long" and pos.isopen():
-                        try:
-                            exchange_close = self.all_data[self.exchange].loc[i, "close"]
-                        except KeyError:
-                            exchange_close = self.all_data[self.exchange].loc[prev_idx, "close"]
-
-                        pos.setclose(self.tkr_data.loc[i, "close"], exchange_close, i)
-
-            else:
-                pass
-
-            # Check stop loss
-            for pos in self.pos_dict.values():
-                if pos.isopen() \
-                        and pos.getkind() == "long" \
-                        and pos.sl_price() > self.tkr_data.loc[i, "close"]:
-                    try:
-                        exchange_close = self.all_data[self.exchange].loc[i, "close"]
-                    except KeyError:
-                        exchange_close = self.all_data[self.exchange].loc[prev_idx, "close"]
-
-                    pos.setclose(self.tkr_data.loc[i, "close"],
-                                 exchange_close, i)
-
-                elif pos.isopen() \
-                        and pos.getkind() == "short" \
-                        and pos.sl_price() < self.tkr_data.loc[i, "close"]:
-                    try:
-                        exchange_close = self.all_data[self.exchange].loc[i, "close"]
-                    except KeyError:
-                        exchange_close = self.all_data[self.exchange].loc[prev_idx, "close"]
-
-                    pos.setclose(self.tkr_data.loc[i, "close"] + spread,
-                                 exchange_close, i)
-
-            prev_idx = i
-        # Close opened positions at the end of the backtest
-        for pos in self.pos_dict.values():
-
-            if pos.isopen():
-                pos.setclose(self.tkr_data.loc[positions.index[-1], "close"],
-                             self.all_data[self.exchange].loc[positions.index[-1], "close"],
-                             positions.index[-1])
-
-        for i in self.pos_dict.keys():
-            positions.loc[i, "buycf"] = - self.pos_dict[i].buy_cashflow()
-            positions.loc[self.pos_dict[i].getclose(), "sellcf"] = (self.pos_dict[i].buy_cashflow() +
-                                                                    self.pos_dict[i].earnings())
-
-        positions[self.ticker] = positions["buycf"] + positions["sellcf"]
-
-        return positions
-
-    def backtest_portfolio(self, save: bool = True):
-        portfolio = pd.DataFrame(index=self.signals.index).fillna(0.0)
-        portfolio["holdings"] = self.positions[self.ticker]
-        portfolio["cash"] = self.init_capital + portfolio["holdings"].cumsum()
-        portfolio["total"] = portfolio["cash"] + portfolio["holdings"]
-        portfolio["returns"] = portfolio["total"].pct_change() * 100
-        if save:
-            self.positions.to_csv(f"{ROOT_DIR}\\POSITION\\{self.ticker}positions.csv")
-
-        return portfolio
-
-
-def live_trading():
-    betas = beta_loading()
+def live_trading(tf=timeframe):
+    betas, weights = matrix_loading(tf=timeframe)
     while True:
-        now = int(datetime.now(timezone).strftime("%M%S"))
-        runtime = list(range(415, 6015, 500))  # Run the code 30s before the candle closes
+        if tf == Mt5.TIMEFRAME_D1:
+            now = int(datetime.now(timezone).strftime("%H%M%S"))
+            runtime = [221500]
+
+        elif tf == Mt5.TIMEFRAME_H1:
+            now = int(datetime.now(timezone).strftime("%M%S"))
+            runtime = [5915]
+
+        elif tf == Mt5.TIMEFRAME_M5:
+            now = int(datetime.now(timezone).strftime("%M%S"))
+            runtime = list(range(415, 6015, 500))
+
+        else:
+            raise NotImplementedError("Timeframe not yet implemented.")
+
         if now in runtime:
             metatrader_start(demo[0], demo[1], demo[2])
-            all_data = time_series_download(candles)
+            all_data = time_series_download(n_candles=candles, tf=timeframe)
 
             for ticker in tickers.index:
                 try:
@@ -558,8 +273,9 @@ def live_trading():
                 strategy = ELMStrategy(all_data[ticker],
                                        ticker=ticker,
                                        beta=betas[ticker],
-                                       days=1,
-                                       timeframe="M",
+                                       weight=weights[ticker],
+                                       days=5,
+                                       timeframe="H",
                                        live=True,
                                        save=False)
                 act_signal = strategy.live_signals(strategy.last)
@@ -589,4 +305,4 @@ def live_trading():
 
 
 if __name__ == "__main__":
-    live_trading()
+    backtest_elm()

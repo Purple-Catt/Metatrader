@@ -86,13 +86,25 @@ class ELM:
 
         if isinstance(beta_init, np.ndarray):
             self._beta = beta_init
+
             if verbose:
-                print("Beta initializer implemented correctly")
+                print("Beta initializer loaded correctly")
+
         else:
             self._beta = np.random.uniform(-1., 1., size=(self._num_hidden_units, self._num_out_units))
 
         if isinstance(w_init, str):
-            self._w = get_init(w_init, size=(self._num_input_nodes, self._num_hidden_units))
+            try:
+                self._w = get_init(w_init, size=(self._num_input_nodes, self._num_hidden_units))
+
+            except KeyError:
+                print(f"String between 'std', 'xavier' or 'he' expected, got {w_init} instead.")
+
+        elif isinstance(w_init, np.ndarray):
+            self._w = w_init
+
+            if verbose:
+                print("Weight matrix loaded correctly")
         else:
             self._w = np.random.uniform(-1, 1, size=(self._num_input_nodes, self._num_hidden_units))
 
@@ -112,9 +124,12 @@ class ELM:
         # Moore–Penrose pseudo inverse
         if display_time:
             start = time.time()
+
         H_pinv = jnp.linalg.pinv(H)
+
         if display_time:
             stop = time.time()
+
             print(f'Train time: {stop - start}')
 
         self._beta = H_pinv.dot(y)
@@ -137,3 +152,7 @@ class ELM:
     @property
     def beta(self):
         return self._beta
+
+    @property
+    def w(self):
+        return self._w
