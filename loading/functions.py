@@ -4,7 +4,7 @@ import os
 import MetaTrader5 as Mt5
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-tickers = pd.read_csv(f"{ROOT_DIR}\\Forex_ticker.csv", index_col=0)
+tickers = pd.read_csv(f"{ROOT_DIR}\\Data\\Forex_ticker.csv", index_col=0)
 
 
 def time_series_download(tf, n_candles: int = 0, online: bool = True):
@@ -39,7 +39,8 @@ def time_series_download(tf, n_candles: int = 0, online: bool = True):
             else:
                 raise NotImplementedError("Timeframe not yet implemented.")
 
-            data_dict[name] = pd.read_csv(f"{ROOT_DIR}\\Time series\\{folder}\\{name}.csv", index_col=0)
+            data_dict[name] = pd.read_csv(f"{ROOT_DIR}\\Data\\Time series\\{folder}\\{name}.csv",
+                                          index_col=0)
             date_time = pd.to_datetime(data_dict[name]["time"], format="%Y-%m-%d %H:%M:%S")
             data_dict[name]["time"] = date_time.map(pd.Timestamp.timestamp)
             data_dict[name].set_index("time", inplace=True)
@@ -52,7 +53,7 @@ def time_series_download(tf, n_candles: int = 0, online: bool = True):
 def time_series_saving(data: dict, folder: str = "Daily"):
     """Save time series into a project folder."""
     for name in data.keys():
-        data[name].to_csv(f"{ROOT_DIR}\\Time series\\{folder}\\{name}.csv")
+        data[name].to_csv(f"{ROOT_DIR}\\Data\\Time series\\{folder}\\{name}.csv")
         print(f"{name} saved correctly")
 
 
@@ -73,9 +74,9 @@ def matrix_loading(tf):
             raise NotImplementedError("Timeframe not yet implemented.")
 
         beta_dict[name] = np.array(pd.read_csv(
-            f"{ROOT_DIR}\\Elm_matrices\\Beta\\{folder}\\{name}_Beta.csv", index_col=0))
+            f"{ROOT_DIR}\\Data\\Elm_matrices\\Beta\\{folder}\\{name}_Beta.csv", index_col=0))
         weight_dict[name] = np.array(pd.read_csv(
-            f"{ROOT_DIR}\\Elm_matrices\\Weight\\{folder}\\{name}_Weight.csv", index_col=0))
+            f"{ROOT_DIR}\\Data\\Elm_matrices\\Weight\\{folder}\\{name}_Weight.csv", index_col=0))
         print(f"{name} matrices loaded correctly")
 
     return beta_dict, weight_dict

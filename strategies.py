@@ -5,7 +5,7 @@ from build import rnn, elm, stat_analysis as sa
 import os
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-tickers = pd.read_csv("Forex_ticker.csv", index_col=0)
+tickers = pd.read_csv(f"{ROOT_DIR}\\Data\\Forex_ticker.csv", index_col=0)
 last_sign = {}
 
 
@@ -206,10 +206,16 @@ class ELMStrategy:
         self.name = "ELM"
         self.returns = returns
         if live:
-            self.mod_data, self.Y, self.last = dp.elm_preprocessing(self.data.copy(deep=True), days=days,
-                                                                    timeframe=timeframe, live=True)
+            self.mod_data, self.Y, self.last = dp.elm_preprocessing(self.data.copy(deep=True),
+                                                                    days=days,
+                                                                    timeframe=timeframe,
+                                                                    live=True,
+                                                                    use_return=returns)
         else:
-            self.mod_data, self.Y = dp.elm_preprocessing(self.data.copy(deep=True), days=days, timeframe=timeframe, use_return=returns)
+            self.mod_data, self.Y = dp.elm_preprocessing(self.data.copy(deep=True),
+                                                         days=days,
+                                                         timeframe=timeframe,
+                                                         use_return=returns)
         self.mod_arr = np.array(self.mod_data)
         if timeframe == "D":
             mul = 4
@@ -234,8 +240,10 @@ class ELMStrategy:
             self.model.fit(x=self.mod_arr, y=self.Y, display_time=True)
 
         if save:
-            pd.DataFrame(self.model.beta).to_csv(f"{ROOT_DIR}\\Elm_matrices\\Beta\\{timeframe}\\{ticker}_Beta.csv")
-            pd.DataFrame(self.model.w).to_csv(f"{ROOT_DIR}\\Elm_matrices\\Weight\\{timeframe}\\{ticker}_Weight.csv")
+            pd.DataFrame(self.model.beta).to_csv(
+                f"{ROOT_DIR}\\Data\\Elm_matrices\\Beta\\{timeframe}\\{ticker}_Beta.csv")
+            pd.DataFrame(self.model.w).to_csv(
+                f"{ROOT_DIR}\\Data\\Elm_matrices\\Weight\\{timeframe}\\{ticker}_Weight.csv")
 
     def generate_signals(self):
         """BACKTESTING PURPOSE\n

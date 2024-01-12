@@ -7,8 +7,8 @@ import pandas as pd
 import os
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-parameters = pd.read_csv(f"{ROOT_DIR}\\Params\\Parameter_daily.csv", index_col=0)
-parameters_hourly = pd.read_csv(f"{ROOT_DIR}\\Params\\Parameters_hourly.csv", index_col=0)
+parameters = pd.read_csv(f"{ROOT_DIR}\\Data\\Params\\Parameter_daily.csv", index_col=0)
+parameters_hourly = pd.read_csv(f"{ROOT_DIR}\\Data\\Params\\Parameters_hourly.csv", index_col=0)
 
 
 def adf_test(data: pd.DataFrame, alpha=0.05):
@@ -40,6 +40,7 @@ def best_arima_model(data, d):
     bar.garchAuto(base.diff(rdata), min_order=ro.vectors.IntVector([0, 0, 1, 1]),
                   max_order=ro.vectors.IntVector([2, 2, 1, 1]), trace=True, cond_dists=cond, with_forecast=False)
 """
+
 
 def forecasting(data, distrib, order):
     """Forecast the return of one-step-ahead period using an ARIMA-GARCH model."""

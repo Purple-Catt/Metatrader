@@ -19,7 +19,7 @@ demo = credentials.demo
 pos_dict = {}
 models = {}  # Models for RNN strategy
 last_sign = strategies.last_sign
-tickers = pd.read_csv("Forex_ticker.csv", index_col=0)
+tickers = pd.read_csv("Data/Forex_ticker.csv", index_col=0)
 live = True
 timezone = pytz.timezone("Etc/UTC")
 timeframe = Mt5.TIMEFRAME_M5
@@ -60,13 +60,13 @@ def time_series_download(n_candles: int = 0, online: bool = True, tf=timeframe):
     else:
         for name in tickers.index:
             if timeframe == Mt5.TIMEFRAME_D1:
-                data_dict[name] = pd.read_csv(f"Time series\\Daily\\{name}.csv", index_col=0)
+                data_dict[name] = pd.read_csv(f"Data/Time series\\Daily\\{name}.csv", index_col=0)
 
             elif timeframe == Mt5.TIMEFRAME_H1:
-                data_dict[name] = pd.read_csv(f"Time series\\Hourly\\{name}.csv", index_col=0)
+                data_dict[name] = pd.read_csv(f"Data/Time series\\Hourly\\{name}.csv", index_col=0)
 
             elif timeframe == Mt5.TIMEFRAME_M5:
-                data_dict[name] = pd.read_csv(f"Time series\\Mins\\{name}.csv", index_col=0)
+                data_dict[name] = pd.read_csv(f"Data/Time series\\Mins\\{name}.csv", index_col=0)
 
             else:
                 raise ValueError("Timeframe not yet implemented.")

@@ -58,10 +58,10 @@ def plot_learning_curve(history, start_epoch=1):
 
 def training(plot: bool = True):
     data_dict = {}
-    tickers = pd.read_csv(f"{ROOT_DIR}\\Forex_ticker.csv", index_col=0)
+    tickers = pd.read_csv(f"{ROOT_DIR}\\Data\\Forex_ticker.csv", index_col=0)
 
     for names in tickers.index:
-        data_dict[names] = pd.read_csv(f"{ROOT_DIR}\\Time series\\Hourly\\{names}.csv", index_col=0)
+        data_dict[names] = pd.read_csv(f"{ROOT_DIR}\\Data\\Time series\\Hourly\\{names}.csv", index_col=0)
 
     for key in ["USDNOK"]:
         # Uncomment the following lines if you'd like to use the WindowGenerator class
@@ -76,7 +76,7 @@ def training(plot: bool = True):
 
         scores = lstm_model.evaluate(w1.test, verbose=0)
         print("%s model: %s: %.2f%%" % (key, lstm_model.metrics_names[1], scores[1] * 100))
-        lstm_model.save(f"{ROOT_DIR}Models\\{key}.keras")
+        lstm_model.save(f"{ROOT_DIR}\\Data\\Models\\{key}.keras")
         print(f"Saved {key} model to disk")
 
 

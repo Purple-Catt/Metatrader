@@ -12,14 +12,16 @@ from keras.regularizers import l1
 import keras.layers
 from build.alphaRNN import *
 from build.alphatRNN import *
+import os
 
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 save = False
 load = False
 cross_val = False  # Warning: Changing this to True will take several hours to run
 use_features = ['close']  # continuous input
 use_feature = 'close'
 target = 'close'  # continuous output
-df = pd.read_csv(f"../Time series/Hourly/EURUSD.csv", index_col=0)
+df = pd.read_csv(f"{ROOT_DIR}\\Data\\Time series\\Hourly\\EURUSD.csv", index_col=0)
 
 
 def get_lagged_features(value, n_steps, n_steps_ahead):

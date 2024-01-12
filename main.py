@@ -17,7 +17,6 @@ warnings.simplefilter("ignore", FutureWarning)
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Broker credentials
-server = credentials.server
 real = credentials.real
 demo = credentials.demo
 # Variables
@@ -36,7 +35,7 @@ candles = 1000  # Number of OHLCV data to download
 
 
 def metatrader_start(username, psw, svr):
-    """Establish connection to the MetaTrader 5 terminal"""
+    """Establish connection to the MetaTrader 5 terminal."""
     if not Mt5.initialize():
         print("initialize() failed, error code =", Mt5.last_error())
         quit()
@@ -165,7 +164,7 @@ def backtest_armagarch(saveret: bool = False):
                 pass
             else:
                 pos_dict = {}
-                models[ticker] = load_model(f"Models\\{ticker}.keras")
+                models[ticker] = load_model(f"{ROOT_DIR}\\Data\\Models\\{ticker}.keras")
                 strat = ArmaGarchStrategy(all_data[ticker], ticker=ticker, parameters=params)
                 win = 0
                 returns = Portfolio(data=all_data,
@@ -204,7 +203,7 @@ def backtest_rnn(saveret: bool = False):
     for ticker in tickers.index:
         max_dd = 0.0
         pos_dict = {}
-        models[ticker] = load_model(f"Models\\{ticker}.keras")
+        models[ticker] = load_model(f"{ROOT_DIR}\\Data\\Models\\{ticker}.keras")
         strat = RNNStrategy(data=all_data[ticker], ticker=ticker, model=models[ticker])
         win = 0
         returns = Portfolio(data=all_data,
@@ -234,16 +233,17 @@ def backtest_rnn(saveret: bool = False):
 def live_trading(tf=timeframe):
     betas, weights = matrix_loading(tf=timeframe)
     while True:
+        dt_now = datetime.now(timezone)
         if tf == Mt5.TIMEFRAME_D1:
-            now = int(datetime.now(timezone).strftime("%H%M%S"))
+            now = int(dt_now.strftime("%H%M%S"))
             runtime = [221500]
 
         elif tf == Mt5.TIMEFRAME_H1:
-            now = int(datetime.now(timezone).strftime("%M%S"))
+            now = int(dt_now.strftime("%M%S"))
             runtime = [5915]
 
         elif tf == Mt5.TIMEFRAME_M5:
-            now = int(datetime.now(timezone).strftime("%M%S"))
+            now = int(dt_now.strftime("%M%S"))
             runtime = list(range(415, 6015, 500))
 
         else:
