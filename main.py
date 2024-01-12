@@ -107,7 +107,7 @@ def market_order(symbol: str, kind: str, act: str, lot: int = 0.05):
 
 
 def backtest_elm():
-    """ELM strategy backtest"""
+    """ELM strategy backtest."""
     all_data = time_series_download(tf=timeframe, online=False)
     # betas, weights = matrix_loading()
 
