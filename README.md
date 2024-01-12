@@ -4,7 +4,7 @@ The purposes of the different files are the following:
 - **Data folder** → Time series in different timeframes, NN models and several parameters.
 - **backtesting** → Portfolio and Position classes used for backtesting.
 - **build** → Miscellaneous Python script used to develop strategies.
-- **loading** → Functions to load data into scripts.
+- **loading** → Functions for loading data into scripts.
 
 ### Python files
 - **main** → Main script that allow to backtest and live testing trading strategies.
