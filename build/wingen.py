@@ -1,5 +1,7 @@
 import numpy as np
-import tensorflow as tf
+from tensorflow import stack
+from keras.callbacks import EarlyStopping
+from keras.utils import timeseries_dataset_from_array
 import matplotlib.pyplot as plt
 
 
@@ -20,7 +22,7 @@ class WindowGenerator:
                                           enumerate(label_columns)}
         self.column_indices = {name: i for i, name in
                                enumerate(train_df.columns)}
-        # Work out the window parameters.
+        # Work out the window parameters
         self.input_width = input_width
         self.label_width = label_width
         self.shift = shift
@@ -45,7 +47,7 @@ class WindowGenerator:
         inputs = features[:, self.input_slice, :]
         labels = features[:, self.labels_slice, :]
         if self.label_columns is not None:
-            labels = tf.stack(
+            labels = stack(
                 [labels[:, :, self.column_indices[name]] for name in self.label_columns],
                 axis=-1)
         # Slicing doesn't preserve static shape information, so set the shapes
@@ -89,7 +91,7 @@ class WindowGenerator:
 
     def make_dataset(self, data):
         data = np.array(data, dtype=np.float32)
-        ds = tf.keras.utils.timeseries_dataset_from_array(
+        ds = timeseries_dataset_from_array(
             data=data,
             targets=None,
             sequence_length=self.total_window_size,
@@ -127,16 +129,14 @@ class WindowGenerator:
 def compile_and_fit(model,
                     window,
                     monitor: str = "val_loss",
-                    patience: int = 6,
+                    patience: int = 5,
                     mode: str = "min",
-                    loss=tf.losses.MeanSquaredError(),
-                    optimizer=tf.optimizers.Adam(),
-                    metrics=tf.metrics.MeanAbsoluteError(),
+                    loss="mse",
+                    optimizer="adam",
+                    metrics="mae",
                     epochs: int = 100):
     """Compile and fit the model, given the parameters. Tailor-made for the WindowGenerator function."""
-    early_stopping = tf.keras.callbacks.EarlyStopping(monitor=monitor,
-                                                      patience=patience,
-                                                      mode=mode)
+    early_stopping = EarlyStopping(monitor=monitor, patience=patience, mode=mode, restore_best_weights=True)
 
     model.compile(loss=loss,
                   optimizer=optimizer,

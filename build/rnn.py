@@ -1,6 +1,5 @@
 from keras.layers import Dense, LSTM
 from keras.models import Sequential
-from keras.regularizers import L2
 import os
 import pandas as pd
 import matplotlib as mpl
@@ -18,9 +17,9 @@ mpl.rcParams['axes.grid'] = False
 
 def create_model(window):
     model = Sequential([
-        LSTM(16, return_sequences=True),
-        LSTM(8, return_sequences=False, dropout=0.1),
-        Dense(units=1, kernel_regularizer=L2())])
+        LSTM(32, return_sequences=True),
+        LSTM(16, return_sequences=False, dropout=0.1),
+        Dense(units=1)])
 
     history = compile_and_fit(model, window)
 
@@ -56,15 +55,14 @@ def plot_learning_curve(history, start_epoch=1):
     plt.show()
 
 
-def training(plot: bool = True):
+def training(plot: bool = True, save: bool = True):
     data_dict = {}
     tickers = pd.read_csv(f"{ROOT_DIR}\\Data\\Forex_ticker.csv", index_col=0)
 
     for names in tickers.index:
         data_dict[names] = pd.read_csv(f"{ROOT_DIR}\\Data\\Time series\\Hourly\\{names}.csv", index_col=0)
 
-    for key in ["USDNOK"]:
-        # Uncomment the following lines if you'd like to use the WindowGenerator class
+    for key in tickers.index:
         train, val, test, column_indices, num_features = dp.preprocessing_for_win(df=data_dict[key])
         w1 = WindowGenerator(input_width=64, label_width=1, shift=1,
                              train_df=train, val_df=val, test_df=test,
@@ -76,11 +74,16 @@ def training(plot: bool = True):
 
         scores = lstm_model.evaluate(w1.test, verbose=0)
         print("%s model: %s: %.2f%%" % (key, lstm_model.metrics_names[1], scores[1] * 100))
-        lstm_model.save(f"{ROOT_DIR}\\Data\\Models\\{key}.keras")
-        print(f"Saved {key} model to disk")
+        if save:
+            lstm_model.save(f"{ROOT_DIR}\\Data\\Models\\{key}.keras")
+            print(f"Saved {key} model to disk")
 
 
 def prediction(model, x):
     pred = model.predict(x=x)
 
     return float(pred)
+
+
+if __name__ == "__main__":
+    training()

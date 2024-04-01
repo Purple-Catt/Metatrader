@@ -5,8 +5,150 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5220a2f4-85c5-48e3-aa53-0188ace6cea2" name="Changes" comment="Code optimization">
-      <change beforePath="$PROJECT_DIR$/ELM.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/AUDCAD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/AUDJPY_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/AUDUSD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/CADJPY_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/EURAUD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/EURCAD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/EURCHF_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/EURGBP_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/EURJPY_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/EURNOK_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/EURNZD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/EURUSD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/GBPAUD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/GBPCAD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/GBPJPY_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/GBPUSD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/NZDUSD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/USDCAD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/USDCHF_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/USDJPY_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/H/USDNOK_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/AUDCAD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/AUDJPY_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/AUDUSD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/CADJPY_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/EURAUD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/EURCAD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/EURCHF_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/EURGBP_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/EURJPY_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/EURNOK_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/EURNZD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/EURUSD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/GBPAUD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/GBPCAD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/GBPJPY_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/GBPUSD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/NZDUSD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/USDCAD_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/USDCHF_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/USDJPY_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Beta/M/USDNOK_Beta.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/AUDCAD_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/AUDJPY_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/AUDUSD_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/CADJPY_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/EURAUD_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/EURCAD_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/EURCHF_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/EURGBP_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/EURJPY_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/EURNOK_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/EURNZD_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/EURUSD_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/GBPAUD_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/GBPCAD_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/GBPJPY_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/GBPUSD_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/NZDUSD_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/USDCAD_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/USDCHF_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/USDJPY_Weight.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Elm_matrices/normal/Weight/H/USDNOK_Weight.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/AUDCAD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/AUDJPY_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/AUDUSD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/CADJPY_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/EURAUD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/EURCAD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/EURCHF_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/EURGBP_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/EURJPY_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/EURNOK_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/EURNZD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/EURUSD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/GBPAUD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/GBPCAD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/GBPJPY_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/GBPUSD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/NZDUSD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/USDCAD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/USDCHF_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/USDJPY_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/H/USDNOK_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/AUDCAD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/AUDJPY_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/AUDUSD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/CADJPY_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/EURAUD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/EURCAD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/EURCHF_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/EURGBP_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/EURJPY_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/EURNOK_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/EURNZD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/EURUSD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/GBPAUD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/GBPCAD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/GBPJPY_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/GBPUSD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/NZDUSD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/USDCAD_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/USDCHF_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/USDJPY_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Beta/M/USDNOK_Beta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/AUDCAD_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/AUDJPY_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/AUDUSD_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/CADJPY_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/EURAUD_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/EURCAD_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/EURCHF_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/EURGBP_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/EURJPY_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/EURNOK_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/EURNZD_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/EURUSD_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/GBPAUD_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/GBPCAD_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/GBPJPY_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/GBPUSD_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/NZDUSD_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/USDCAD_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/USDCHF_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/USDJPY_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Elm_matrices/Weight/H/USDNOK_Weight.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Models/AUDCAD.keras" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Models/AUDCAD.keras" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Models/EURCAD.keras" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Models/EURCAD.keras" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Models/EURGBP.keras" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Models/EURGBP.keras" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Models/EURJPY.keras" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Models/EURJPY.keras" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Models/EURUSD.keras" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Models/EURUSD.keras" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Models/GBPUSD.keras" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Models/GBPUSD.keras" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Models/USDJPY.keras" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Models/USDJPY.keras" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backtesting/portfolio.py" beforeDir="false" afterPath="$PROJECT_DIR$/backtesting/portfolio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/RNNNew.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/alphaRNN.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/alphatRNN.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/elm.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/elm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/rnn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/wingen.py" beforeDir="false" afterPath="$PROJECT_DIR$/build/wingen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/strategies.py" beforeDir="false" afterPath="$PROJECT_DIR$/strategies.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +185,9 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/venv2/Lib/site-packages/sysidentpy/utils/plotting.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -58,30 +203,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "Python.RNN.executor": "Run",
-    "Python.Scratch.executor": "Run",
-    "Python.Testing.executor": "Run",
-    "Python.aaa.executor": "Run",
-    "Python.data_preprocessing.executor": "Run",
-    "Python.elm.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.strategies.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/marco/Desktop/Code/P4DS",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Python.RNN.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Scratch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Testing.executor&quot;: &quot;Run&quot;,
+    &quot;Python.aaa.executor&quot;: &quot;Run&quot;,
+    &quot;Python.data_preprocessing.executor&quot;: &quot;Run&quot;,
+    &quot;Python.elm.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.narx.executor&quot;: &quot;Run&quot;,
+    &quot;Python.rnn.executor&quot;: &quot;Run&quot;,
+    &quot;Python.strategies.executor&quot;: &quot;Run&quot;,
+    &quot;Python.wingen.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/marco/Desktop/Code/P4DS&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Python"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Python&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\marco\Desktop\Code\Metatrader\Data" />
@@ -190,7 +338,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
+        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
       </set>
     </attachedChunks>
   </component>

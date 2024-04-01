@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing._data import MinMaxScaler as ScalerType
 import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime
@@ -24,12 +26,16 @@ def preprocessing_for_win(df: pd.DataFrame, violin: bool = False):
     day = 24*60*60
     year = 365.25 * day
     # Scaling DataFrame
-    df = df.diff()
+    # df = df.diff()
+    '''
     df['Day sin'] = np.sin(timestamp_s * (2 * np.pi / day))
     df['Day cos'] = np.cos(timestamp_s * (2 * np.pi / day))
     df['Year sin'] = np.sin(timestamp_s * (2 * np.pi / year))
     df['Year cos'] = np.cos(timestamp_s * (2 * np.pi / year))
+    '''
     df.dropna(inplace=True)
+    scaler = MinMaxScaler()
+    df = pd.DataFrame(data=scaler.fit_transform(df), index=df.index, columns=df.columns)
     # Splitting data into train, validation and test subsets
     col_indices = {name: i for i, name in enumerate(df.columns)}
     n = len(df)
@@ -115,7 +121,7 @@ def preprocessing(df: pd.DataFrame):
 
 
 def elm_preprocessing(df: pd.DataFrame, days: int = 5, timeframe: str = "M",
-                      live: bool = False, use_return: bool = False):
+                      live: bool = False, use_return: bool = False, scale=None):
     """Preprocess data for live trading use. Look at the source for further information.\n
     Parameters:\n
     df: The raw dataframe to process\n
@@ -135,7 +141,11 @@ def elm_preprocessing(df: pd.DataFrame, days: int = 5, timeframe: str = "M",
     df.drop(columns=["real_volume", "spread", "tick_volume"], inplace=True)
     if use_return:
         df.drop(columns=["open", "high", "low"], inplace=True)
-        df = df.diff() * 1000
+        df = df.diff()
+        if isinstance(scale, ScalerType):
+            scale.fit(df)
+            df = pd.DataFrame(index=df.index, columns=df.columns, data=scale.transform(df))
+
         past = [df]
         for i in range(depth):
             past.append(df.shift(i + 1).rename(
@@ -143,6 +153,10 @@ def elm_preprocessing(df: pd.DataFrame, days: int = 5, timeframe: str = "M",
             )
 
     else:
+        if isinstance(scale, ScalerType):
+            scale.fit(df)
+            df = pd.DataFrame(index=df.index, columns=df.columns, data=scale.transform(df))
+
         past = [df]
         for i in range(depth):
             past.append(df.shift(i + 1).rename(

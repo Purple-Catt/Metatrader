@@ -1,9 +1,9 @@
 import os
 import pandas as pd
-from position import Position
+from backtesting.position import Position
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-tickers = pd.read_csv(f"{ROOT_DIR}\\Forex_ticker.csv", index_col=0)
+tickers = pd.read_csv(f"{ROOT_DIR}\\Data\\Forex_ticker.csv", index_col=0)
 
 
 class Portfolio:

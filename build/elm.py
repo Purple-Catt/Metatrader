@@ -1,6 +1,6 @@
 import numpy as np
 from numpy.random import standard_normal, normal, uniform
-import jax.numpy as jnp
+from jax.numpy.linalg import pinv
 import time
 
 
@@ -20,16 +20,20 @@ def _sigmoid(x):
     return 1. / (1. + np.exp(-x))
 
 
-def _tanh(x):
-    return np.tanh(x)
-
-
 def _fourier(x):
     return np.sin(x)
 
 
 def _hardlimit(x):
     return (x >= 0).astype(int)
+
+
+def _tanh(x):
+    return np.tanh(x)
+
+
+def _softplus(x):
+    return np.log(np.exp(x) + 1)
 
 
 def _identity(x):
@@ -54,7 +58,8 @@ def get_activation(name):
         'sigmoid': _sigmoid,
         'fourier': _fourier,
         'hardlimit': _hardlimit,
-        'tanh': _tanh
+        'tanh': _tanh,
+        'softplus': _softplus
     }[name]
 
 
@@ -75,8 +80,23 @@ def get_init(name: str, size: tuple):
 
 
 class ELM:
-    def __init__(self, num_input_nodes, num_hidden_units, num_out_units, activation='sigmoid',
+    def __init__(self, num_input_nodes: int, num_hidden_units: int, num_out_units: int, activation='sigmoid',
                  loss='mse', beta_init=None, w_init=None, bias_init=None, verbose: bool = True):
+        """
+        Extreme learning machine, as proposed by Huang et al. in 'Extreme learning machine: Theory and applications'.
+        Parameters:
+            num_input_nodes: Number of input nodes, it's equal to the number of variables
+            num_hidden_units: Number of hidden units of the NN
+            num_out_units:bNumber of output units, it's the dimension of the output of the NN
+            activation: str, optional (default='sigmoid'). One between {sigmoid, fourier, hardlimit, tanh, softplus}
+            loss: str, optional (default='mse'). One between {mse, mae, mee}
+            beta_init: ndarray, optional (default=None). If given, it's the trained beta matrix
+            w_init: {ndarray, str}, optional (default=None). It can be the fixed weight matrix - if it's a ndarray - or
+                an initialization method - e.g. 'xavier' for Normalized Xavier or 'std' for Standard Normal
+            bias_init: ndarray, optional (default=None). If given, it's the bias to be used in the NN
+            verbose: bool, optional (default=True). If True, some information will be displayed in the console while
+                running the script.
+        """
         self._num_input_nodes = num_input_nodes
         self._num_hidden_units = num_hidden_units
         self._num_out_units = num_out_units
@@ -125,7 +145,7 @@ class ELM:
         if display_time:
             start = time.time()
 
-        H_pinv = jnp.linalg.pinv(H)
+        H_pinv = pinv(H)
 
         if display_time:
             stop = time.time()
@@ -137,17 +157,6 @@ class ELM:
     def __call__(self, x):
         H = self._activation(x.dot(self._w) + self._bias)
         return H.dot(self._beta)
-
-    def evaluate(self, x, y):
-        pred = self(x)
-
-        # Loss (base on model setting)
-        loss = self._loss(y, pred)
-
-        # Accuracy
-        acc = np.sum(np.argmax(pred, axis=-1) == np.argmax(y, axis=-1)) / len(y)
-
-        return loss, acc, pred
 
     @property
     def beta(self):

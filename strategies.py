@@ -1,7 +1,9 @@
 import numpy as np
 import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
 import data_preprocessing as dp
-from build import rnn, elm, stat_analysis as sa
+from build import rnn, stat_analysis as sa
+from build.elm import ELM
 import os
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -15,7 +17,7 @@ class ArmaGarchStrategy:
         self.data = data
         self.ticker = ticker
         self.parameters = parameters
-        self.name = "ArimaGarch"
+        self._name = "ArimaGarch"
         self.mod_data = data
         self.mod_data["close"] = self.mod_data["close"] * int(self.parameters.loc[self.ticker, "multiplier"])
         self.order = (int(self.parameters.loc[self.ticker, "p"]),
@@ -124,6 +126,10 @@ class ArmaGarchStrategy:
 
         return sign
 
+    @property
+    def name(self):
+        return self._name
+
 
 class RNNStrategy:
 
@@ -131,12 +137,12 @@ class RNNStrategy:
         self.data = data
         self.ticker = ticker
         self.model = model
-        self.name = "RNN"
+        self._name = "RNN"
         self.mod_data = dp.preprocessing(self.data)
 
     def generate_signals(self):
         """BACKTESTING PURPOSE\n
-                Generate simple long/short signals. It returns -1, 0, 1, respectively for short, hold or long signals"""
+           Generate simple long/short signals. It returns -1, 0, 1, respectively for short, hold or long signals"""
         signals = pd.DataFrame(index=self.data.index.to_list()[64:])
         signals["signal"] = 0.0
         last_signal = 0
@@ -184,80 +190,113 @@ class RNNStrategy:
 
         return sign
 
+    @property
+    def name(self):
+        return self._name
+
 
 class ELMStrategy:
 
-    def __init__(self, data: pd.DataFrame, ticker: str, beta: np.ndarray = None, weight: np.ndarray | str = None,
-                 days: int = 10, timeframe: str = "M", live: bool = False, save: bool = False, returns: bool = True):
-        """Simple trading strategy that uses an Extreme learning machine to make one-step-ahead price predictions.\n
-        Parameters:\n
-        data: DataFrame containing OHLCV data\n
-        ticker: Ticker of the currency cross used\n
-        beta: If given, it's the trained weight matrix\n
-        days: Number of days considered in the training process\n
-        timeframe: Timeframe of the price series used, string between D, H, M, respectively for daily, hourly and 5
-        minutes data\n
-        live: Boolean value; if True, the last row - aka the actual price - is returned separetly to make
-        predictions\n
-        save: Boolean value; if True, both beta and weight matrix will be saved to csv file\n
-        returns: Boolean value; if True, returns are used instead of real prices to make predictions."""
+    def __init__(self, data: pd.DataFrame,
+                 ticker: str,
+                 beta: np.ndarray = None,
+                 weight: np.ndarray | str = None,
+                 days: int = 10,
+                 timeframe: str = "M",
+                 depth: int = 10,
+                 live: bool = False,
+                 save: bool = False,
+                 returns: bool = True,
+                 scale: bool = False):
+        """Simple trading strategy that uses an Extreme learning machine to make one-step-ahead price predictions.
+            Parameters:
+                data: DataFrame. Contains OHLCV data
+                ticker: str. Ticker of the currency cross used
+                beta: ndarray, optional (default=None). If given, it's the trained beta matrix
+                weight: {ndarray, str}, optional (default=None). It can be the fixed weight matrix - if it's a ndarray -
+                    or an initialization method - e.g. 'xavier' for Normalized Xavier or 'std' for Standard Normal
+                days: int, optional (default=10). Number of days considered in the training process
+                timeframe: str, optional (default='M'). Timeframe of the price series used, string between D, H, M,
+                    respectively for daily, hourly and 5 minutes data
+                depth: int, optional (default=10). It's used to compute the # hidden units, multiplying it by the #input
+                    ones. Default is 10 so #hidden units = #input units * depth
+                live: bool, optional (default=False). If True, the last row - aka the actual price - is returned
+                    separetly to make predictions
+                save: bool, optional (default=False). If True, both beta and weight matrix will be saved to csv file
+                returns: bool, optional (default=True). If True, returns are used instead of real prices to make
+                    predictions
+                scale: bool, optional (default=True). If True, the values will be scaled using the MinMaxScaler."""
         self.data = data
         self.ticker = ticker
-        self.name = "ELM"
+        self._name = "ELM"
         self.returns = returns
+        if scale:
+            self.scaler = MinMaxScaler()
+        else:
+            self.scaler = None
+
         if live:
             self.mod_data, self.Y, self.last = dp.elm_preprocessing(self.data.copy(deep=True),
                                                                     days=days,
                                                                     timeframe=timeframe,
                                                                     live=True,
-                                                                    use_return=returns)
+                                                                    use_return=returns,
+                                                                    scale=self.scaler)
         else:
             self.mod_data, self.Y = dp.elm_preprocessing(self.data.copy(deep=True),
                                                          days=days,
                                                          timeframe=timeframe,
-                                                         use_return=returns)
+                                                         use_return=returns,
+                                                         scale=self.scaler)
         self.mod_arr = np.array(self.mod_data)
+        if self.returns:
+            n_cols = 1
+        else:
+            n_cols = 4
+
         if timeframe == "D":
-            mul = 4
+            day_width = n_cols
         elif timeframe == "H":
-            mul = 24
+            day_width = 24 * n_cols
         elif timeframe == "M":
-            mul = 12 * 24 * 4
+            day_width = 12 * 24 * n_cols
         else:
             raise ValueError(f"String between 'D', 'H' or 'M' expected, got {timeframe} instead.")
 
-        self.model = elm.ELM(num_input_nodes=days * mul,
-                             num_hidden_units=days * mul * 10,
-                             num_out_units=1,
-                             activation="tanh",
-                             loss="mse",
-                             beta_init=beta,
-                             w_init=weight,
-                             verbose=True
-                             )
+        self.model = ELM(num_input_nodes=days * day_width,
+                         num_hidden_units=days * day_width * depth,
+                         num_out_units=1,
+                         activation="tanh",
+                         loss="mse",
+                         beta_init=beta,
+                         w_init=weight,
+                         verbose=True
+                         )
 
         if not isinstance(beta, np.ndarray):
             self.model.fit(x=self.mod_arr, y=self.Y, display_time=True)
 
         if save:
             pd.DataFrame(self.model.beta).to_csv(
-                f"{ROOT_DIR}\\Data\\Elm_matrices\\Beta\\{timeframe}\\{ticker}_Beta.csv")
+                f"{ROOT_DIR}\\Data\\Elm_matrices\\normal\\Beta\\{timeframe}\\{ticker}_Beta.csv")
             pd.DataFrame(self.model.w).to_csv(
-                f"{ROOT_DIR}\\Data\\Elm_matrices\\Weight\\{timeframe}\\{ticker}_Weight.csv")
+                f"{ROOT_DIR}\\Data\\Elm_matrices\\normal\\Weight\\{timeframe}\\{ticker}_Weight.csv")
 
     def generate_signals(self):
         """BACKTESTING PURPOSE\n
-                Generate simple long/short signals. It returns -1, 0, 1, respectively for short, hold or long signals"""
+           Generate simple long/short signals. It returns -1, 0, 1, respectively for short, hold or long signals"""
         signals = pd.DataFrame(index=self.mod_data.index)
         signals["signal"] = 0.0
         last_signal = 0
         for idx, row in enumerate(self.mod_arr):
             if self.returns:
-                ref = 0.0
+                ref = float(self.scaler.transform(pd.DataFrame(columns=["close"], data=[[0.0]])))
                 act = self.Y[idx]
+
             else:
-                ref = row[3]
+                ref = self.scaler.transform(row)[3]
                 act = self.Y[idx]
+
             time_idx = self.mod_data.index[idx]
             forec = self.model(row)
             signals.loc[time_idx, "forecast"] = forec
@@ -278,7 +317,9 @@ class ELMStrategy:
             # Holding signal
             else:
                 signals.loc[time_idx, "signal"] = 0
+
         signals.to_csv(f"{ROOT_DIR}\\sign\\{self.ticker}signals.csv")
+
         return signals
 
     def live_signals(self, x):
@@ -304,3 +345,7 @@ class ELMStrategy:
             sign = 0
 
         return sign
+
+    @property
+    def name(self):
+        return self._name

@@ -23,7 +23,7 @@ demo = credentials.demo
 sign_dict = {}  # Signals for backtestings
 models = {}  # Models for NN strategies
 last_sign = strategies.last_sign
-tickers = pd.read_csv(f"{ROOT_DIR}\\Forex_ticker.csv", index_col=0)
+tickers = pd.read_csv(f"{ROOT_DIR}\\Data\\Forex_ticker.csv", index_col=0)
 timezone = pytz.timezone("Etc/UTC")
 timeframe = Mt5.TIMEFRAME_H1
 
@@ -117,9 +117,13 @@ def backtest_elm():
         pos_dict = {}
         strat = ELMStrategy(data=all_data[ticker],
                             ticker=ticker,
-                            days=20,
+                            weight="xavier",
+                            days=1,
                             timeframe="H",
-                            save=True)
+                            depth=2,
+                            save=False,
+                            returns=True,
+                            scale=False)
         win = 0
         returns = Portfolio(data=all_data,
                             ticker=ticker,
@@ -194,40 +198,47 @@ def backtest_armagarch(saveret: bool = False):
     bt_optimization.to_csv("Optimization.csv")
 
 
-def backtest_rnn(saveret: bool = False):
+def backtest_rnn(loadmodel: bool = False):
     """RNN strategy backtest"""
-    metatrader_start(demo[0], demo[1], demo[2])
-    all_data = time_series_download(n_candles=candles, online=True, tf=timeframe)
-    Mt5.shutdown()
+    all_data = time_series_download(online=False, tf=timeframe)
+
     bt_return = pd.DataFrame(index=tickers.index)
     for ticker in tickers.index:
         max_dd = 0.0
         pos_dict = {}
-        models[ticker] = load_model(f"{ROOT_DIR}\\Data\\Models\\{ticker}.keras")
+        if loadmodel:
+            models[ticker] = load_model(f"{ROOT_DIR}\\Data\\Models\\{ticker}.keras")
+
         strat = RNNStrategy(data=all_data[ticker], ticker=ticker, model=models[ticker])
         win = 0
         returns = Portfolio(data=all_data,
                             ticker=ticker,
                             exchange=tickers.loc[ticker, "Toeuro"],
                             signals=strat.generate_signals(),
+                            stoploss=1,
                             positions=pos_dict).backtest_portfolio()
 
-        if saveret:
-            returns.to_csv(f"Portfolios\\{strat.name}\\{ticker}.csv")
+        bt_return.loc[ticker, strat.name] = returns.iloc[-1, returns.columns.get_loc("cash")]
 
-        bt_return.loc[ticker, strat.name] = returns.loc[candles - 1, "cash"]
-        for n in pos_dict.values():
+        for val in pos_dict.values():
             # Number of winning positions
-            if n.iswinner() is True:
+            if val.iswinner():
                 win += 1
             # Maximum drawdown
-            if n.earnings() < max_dd:
-                max_dd = n.earnings()
-        bt_return.loc[ticker, f"{strat.name} % Win"] = (win / len(pos_dict.keys())) * 100
+            if val.earnings() < max_dd:
+                max_dd = val.earnings()
+        try:
+            bt_return.loc[ticker, f"{strat.name} % Win"] = (win / len(pos_dict.keys())) * 100
+
+        except ZeroDivisionError:
+            bt_return.loc[ticker, f"{strat.name} % Win"] = 0
+
         bt_return.loc[ticker, f"{strat.name} Win"] = win
         bt_return.loc[ticker, f"{strat.name}  Operations"] = len(pos_dict)
         bt_return.loc[ticker, "Max DD"] = max_dd
         print(f"{strat.name} strategy on {ticker} successfully tested")
+
+    bt_return.to_csv("RNN.csv")
 
 
 def live_trading(tf=timeframe):
@@ -305,4 +316,4 @@ def live_trading(tf=timeframe):
 
 
 if __name__ == "__main__":
-    backtest_elm()
+    backtest_rnn()
